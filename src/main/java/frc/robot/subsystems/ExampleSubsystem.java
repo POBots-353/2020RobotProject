@@ -13,8 +13,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.PWMSparkMax;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+//import frc.robot.Constants;
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class ExampleSubsystem extends SubsystemBase {
   
@@ -22,16 +25,19 @@ public class ExampleSubsystem extends SubsystemBase {
   /**
    * Creates a new ExampleSubsystem.
    */
-  public CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorPort, MotorType.kBrushless);
-  public CANSparkMax leftRearMotor = new CANSparkMax(Constants.leftRearMotorPort, MotorType.kBrushless);
-  public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
-  public CANSparkMax rightRearMotor = new CANSparkMax(Constants.rightRearMotorPort, MotorType.kBrushless);
+  public PWMSparkMax leftFrontMotor = new PWMSparkMax(Constants.leftFrontMotorPort);
+  public PWMSparkMax leftRearMotor = new PWMSparkMax(Constants.leftRearMotorPort);
+  public PWMSparkMax rightFrontMotor = new PWMSparkMax(Constants.rightFrontMotorPort);
+  public PWMSparkMax rightRearMotor = new PWMSparkMax(Constants.rightRearMotorPort);
+  SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
+  SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
   
-  public DifferentialDrive drive = new DifferentialDrive(leftFrontMotor, rightFrontMotor);
+  public DifferentialDrive drive;
 
   public ExampleSubsystem() {
-    leftRearMotor.follow(leftFrontMotor);
-    rightRearMotor.follow(rightFrontMotor);
+    //leftRearMotor.follow(leftFrontMotor);
+    //rightRearMotor.follow(rightFrontMotor);
+    drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
   
   }
 
@@ -67,8 +73,6 @@ public class ExampleSubsystem extends SubsystemBase {
   //* Creates a SpeedControllerGroup with with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
   //*** This allows us to command both the right side motors or the left side motors at the same time ***
   //*** This is comparable to Talon motors controllers where there is a master motor controller and a slave motor controller that  follows the master motor controller ***
-  //SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
-  //SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
   
   
   //*Creates a DifferentialDrive variable drive that 
