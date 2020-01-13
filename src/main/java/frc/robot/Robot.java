@@ -20,8 +20,8 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
-
+  
+  private Command m_autonomousCommand; 
   private RobotContainer m_robotContainer;
 
   /**
@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
     //Instantiates the subsys and command
     ExampleSubsystem sub = new ExampleSubsystem();
     ExampleCommand cmd = new ExampleCommand(sub); 
-    cmd.execute(); //this should be nonstatic
+    cmd.execute(); //this should be nonstatic 
   }
 
   @Override

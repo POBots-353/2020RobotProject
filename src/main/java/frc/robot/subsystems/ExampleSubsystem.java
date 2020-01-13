@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 //import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+//import edu.wpi.first.wpilibj.SpeedControllerGroup;
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -20,8 +22,17 @@ public class ExampleSubsystem extends SubsystemBase {
   /**
    * Creates a new ExampleSubsystem.
    */
-  public ExampleSubsystem() {
+  public CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorPort, MotorType.kBrushless);
+  public CANSparkMax leftRearMotor = new CANSparkMax(Constants.leftRearMotorPort, MotorType.kBrushless);
+  public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
+  public CANSparkMax rightRearMotor = new CANSparkMax(Constants.rightRearMotorPort, MotorType.kBrushless);
+  
+  public DifferentialDrive drive = new DifferentialDrive(leftFrontMotor, rightFrontMotor);
 
+  public ExampleSubsystem() {
+    leftRearMotor.follow(leftFrontMotor);
+    rightRearMotor.follow(rightFrontMotor);
+  
   }
 
 
@@ -52,19 +63,15 @@ public class ExampleSubsystem extends SubsystemBase {
 
   //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
   //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int) ***
-  public CANSparkMax driveMotor = new CANSparkMax(Constants.driveMotor, MotorType.kBrushless);
-  //public CANSparkMax leftRearMotor = new CANSparkMax(Constants.leftRearMotorPort, MotorType.kBrushless);
-  //public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
-  //public CANSparkMax rightRearMotor = new CANSparkMax(Constants.rightRearMotorPort, MotorType.kBrushless);
-
+  
   //* Creates a SpeedControllerGroup with with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
   //*** This allows us to command both the right side motors or the left side motors at the same time ***
   //*** This is comparable to Talon motors controllers where there is a master motor controller and a slave motor controller that  follows the master motor controller ***
   //SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
   //SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
-
+  
+  
   //*Creates a DifferentialDrive variable drive that 
-  //public DifferentialDrive drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
   
   //***** END SPARKMAX DRIVE CODE *****
 
@@ -73,7 +80,7 @@ public class ExampleSubsystem extends SubsystemBase {
 
 
   public void manualDrive(double move, double turn){
-    driveMotor.set(move);;
+    drive.arcadeDrive(move, turn);
   }
 
 

@@ -25,7 +25,7 @@ public class RobotContainer {
 
   public final static ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
-  public final static Joystick driverStick = new Joystick(0);
+  public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -43,7 +43,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //double move = driverStick.getY();
+    double move = driverStick.getY();
+    double turn = driverStick.getX();
   }
 
 
