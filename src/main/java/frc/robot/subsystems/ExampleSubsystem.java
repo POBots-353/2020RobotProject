@@ -84,7 +84,7 @@ public class ExampleSubsystem extends SubsystemBase {
 
 
   public void manualDrive(double move, double turn, double scale){
-    drive.arcadeDrive(-move * scale, turn * scale);
+    drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
   }
 
 
