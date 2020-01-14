@@ -41,8 +41,9 @@ public class ExampleCommand extends CommandBase {
   public void execute() {
     double move = RobotContainer.driverStick.getY();
     double turn = RobotContainer.driverStick.getX();
-
-    RobotContainer.m_exampleSubsystem.manualDrive(move,turn);
+    double scale = Constants.driveScale;
+    //RobotContainer.m_exampleSubsystem.manualDrive(move,turn);
+    m_subsystem.manualDrive(move, turn, scale);    
     
   }
 

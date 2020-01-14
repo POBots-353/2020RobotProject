@@ -32,13 +32,13 @@ public class ExampleSubsystem extends SubsystemBase {
   SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
   SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
   
-  public DifferentialDrive drive;
-
+  public DifferentialDrive drive = new DifferentialDrive(leftMotorGroup,rightMotorGroup);
+  
   public ExampleSubsystem() {
     //leftRearMotor.follow(leftFrontMotor);
     //rightRearMotor.follow(rightFrontMotor);
-    drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
-  
+    //drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
+    
   }
 
 
@@ -83,8 +83,8 @@ public class ExampleSubsystem extends SubsystemBase {
 
 
 
-  public void manualDrive(double move, double turn){
-    drive.arcadeDrive(move, turn);
+  public void manualDrive(double move, double turn, double scale){
+    drive.arcadeDrive(-move * scale, turn * scale);
   }
 
 

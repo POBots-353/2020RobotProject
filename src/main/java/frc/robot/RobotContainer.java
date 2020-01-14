@@ -23,7 +23,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final static ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  public final static ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  public final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
 
@@ -32,7 +32,6 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-
     configureButtonBindings();
   }
 
@@ -43,8 +42,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    double move = driverStick.getY();
-    double turn = driverStick.getX();
+    //double move = driverStick.getY();
+    //double turn = driverStick.getX();
   }
 
 

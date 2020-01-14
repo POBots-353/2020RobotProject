@@ -22,4 +22,5 @@ public final class Constants {
 	public static int rightFrontMotorPort = 1;
 	public static int rightRearMotorPort = 0;
 	public static int driverStickPort = 0;
+	public static double driveScale = 0.88; //represents maximum speed for the robot's drivetrain
 }
