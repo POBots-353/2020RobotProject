@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 public class ExampleSubsystem extends SubsystemBase {
   
 
+
   //***** BEGIN SPARKMAX DRIVE CODE *****
 
   //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
@@ -30,7 +31,6 @@ public class ExampleSubsystem extends SubsystemBase {
   public PWMSparkMax leftRearMotor = new PWMSparkMax(Constants.leftRearMotorPort);
   public PWMSparkMax rightFrontMotor = new PWMSparkMax(Constants.rightFrontMotorPort);
   public PWMSparkMax rightRearMotor = new PWMSparkMax(Constants.rightRearMotorPort);
-
 
   //* Creates a SpeedControllerGroup with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
   //*** This allows us to command both the right side motors or the left side motors at the same time ***
@@ -47,14 +47,6 @@ public class ExampleSubsystem extends SubsystemBase {
   }
   
   //***** END SPARKMAX DRIVE CODE *****
-
-
-  public ExampleSubsystem() {
-    //leftRearMotor.follow(leftFrontMotor);
-    //rightRearMotor.follow(rightFrontMotor);
-    //drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
-    
-  }
 
 
 
@@ -80,6 +72,14 @@ public class ExampleSubsystem extends SubsystemBase {
 
   //***** END TALON DRIVE CODE *****/
 
+  
+
+  public ExampleSubsystem() {
+    //Never used, don't know what it does? - Riley
+    
+  }
+
+
 
 
 
@@ -87,4 +87,9 @@ public class ExampleSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+
+
+
+
 }
