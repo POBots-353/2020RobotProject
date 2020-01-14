@@ -22,18 +22,33 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 public class ExampleSubsystem extends SubsystemBase {
   
 
-  /**
-   * Creates a new ExampleSubsystem.
-   */
+  //***** BEGIN SPARKMAX DRIVE CODE *****
+
+  //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
+  //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int) ***
   public PWMSparkMax leftFrontMotor = new PWMSparkMax(Constants.leftFrontMotorPort);
   public PWMSparkMax leftRearMotor = new PWMSparkMax(Constants.leftRearMotorPort);
   public PWMSparkMax rightFrontMotor = new PWMSparkMax(Constants.rightFrontMotorPort);
   public PWMSparkMax rightRearMotor = new PWMSparkMax(Constants.rightRearMotorPort);
+
+
+  //* Creates a SpeedControllerGroup with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
+  //*** This allows us to command both the right side motors or the left side motors at the same time ***
+  //*** This is comparable to Talon motors controllers where there is a master motor controller and a slave motor controller that follows the master motor controller ***
   SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
   SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
   
+  //*Creates a DifferentialDrive variable drive that pairs the leftMotorGroup and rightMotorGroup to take two parameters to drive (move and turn)
   public DifferentialDrive drive = new DifferentialDrive(leftMotorGroup,rightMotorGroup);
+
+  //*Creates a manualDrive method that is called in 
+  public void manualDrive(double move, double turn, double scale){
+    drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
+  }
   
+  //***** END SPARKMAX DRIVE CODE *****
+
+
   public ExampleSubsystem() {
     //leftRearMotor.follow(leftFrontMotor);
     //rightRearMotor.follow(rightFrontMotor);
@@ -59,33 +74,13 @@ public class ExampleSubsystem extends SubsystemBase {
     //rightSlave.follow(rightMaster);
   //}
 
+  //public void manualDrive(double move, double turn, double scale){
+    //drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
+  //}
+
   //***** END TALON DRIVE CODE *****/
 
 
-
-
-
-  //***** BEGIN SPARKMAX DRIVE CODE *****
-
-  //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
-  //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int) ***
-  
-  //* Creates a SpeedControllerGroup with with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
-  //*** This allows us to command both the right side motors or the left side motors at the same time ***
-  //*** This is comparable to Talon motors controllers where there is a master motor controller and a slave motor controller that  follows the master motor controller ***
-  
-  
-  //*Creates a DifferentialDrive variable drive that 
-  
-  //***** END SPARKMAX DRIVE CODE *****
-
-
-
-
-
-  public void manualDrive(double move, double turn, double scale){
-    drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
-  }
 
 
   @Override
