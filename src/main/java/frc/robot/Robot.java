@@ -103,6 +103,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //Instantiates the subsys and command
+    //m_robotContainer.m_autoCommand.execute();
+
   }
 
   @Override

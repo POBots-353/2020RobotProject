@@ -13,6 +13,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 //import frc.robot.Constants;
@@ -26,10 +30,10 @@ public class ExampleSubsystem extends SubsystemBase {
 
   //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
   //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int) ***
-  public PWMSparkMax leftFrontMotor = new PWMSparkMax(Constants.leftFrontMotorPort);
-  public PWMSparkMax leftRearMotor = new PWMSparkMax(Constants.leftRearMotorPort);
-  public PWMSparkMax rightFrontMotor = new PWMSparkMax(Constants.rightFrontMotorPort);
-  public PWMSparkMax rightRearMotor = new PWMSparkMax(Constants.rightRearMotorPort);
+  public CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorPort,MotorType.kBrushless);
+  public CANSparkMax leftRearMotor = new CANSparkMax(Constants.leftRearMotorPort, MotorType.kBrushless);
+  public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
+  public CANSparkMax rightRearMotor = new CANSparkMax(Constants.rightRearMotorPort, MotorType.kBrushless);
 
 
   //* Creates a SpeedControllerGroup with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
@@ -52,7 +56,9 @@ public class ExampleSubsystem extends SubsystemBase {
   public ExampleSubsystem() {
     //leftRearMotor.follow(leftFrontMotor);
     //rightRearMotor.follow(rightFrontMotor);
+    //leftRearMotor.(leftFrontMotor);
     //drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
+    drive.setSafetyEnabled(true);
     
   }
 
