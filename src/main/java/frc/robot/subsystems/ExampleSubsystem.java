@@ -5,28 +5,30 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
+
+
+
 package frc.robot.subsystems;
 
-//import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-//import edu.wpi.first.wpilibj.SpeedControllerGroup;
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-//import frc.robot.Constants;
-//import com.revrobotics.CANSparkMax;
-//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+
+
+
 
 public class ExampleSubsystem extends SubsystemBase {
   
 
-  //***** BEGIN SPARKMAX DRIVE CODE *****
+  //***** BEGIN CANSPARKMAX DRIVE CODE *****
 
   //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
   //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int) ***
@@ -35,33 +37,21 @@ public class ExampleSubsystem extends SubsystemBase {
   public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
   public CANSparkMax rightRearMotor = new CANSparkMax(Constants.rightRearMotorPort, MotorType.kBrushless);
 
-
   //* Creates a SpeedControllerGroup with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
   //*** This allows us to command both the right side motors or the left side motors at the same time ***
   //*** This is comparable to Talon motors controllers where there is a master motor controller and a slave motor controller that follows the master motor controller ***
   SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
   SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
   
-  //*Creates a DifferentialDrive variable drive that pairs the leftMotorGroup and rightMotorGroup to take two parameters to drive (move and turn)
+  //* Creates a DifferentialDrive variable drive that pairs the leftMotorGroup and rightMotorGroup to take two parameters to drive (move and turn) *
   public DifferentialDrive drive = new DifferentialDrive(leftMotorGroup,rightMotorGroup);
 
-  //*Creates a manualDrive method that is called in 
+  //* Creates a manualDrive(double, double, double) method that takes in the x and y values from the joystick as well as the scale and sends them to the function arcadeDrive(int, int) *
   public void manualDrive(double move, double turn, double scale){
     drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
   }
   
-  //***** END SPARKMAX DRIVE CODE *****
-
-
-  public ExampleSubsystem() {
-    //leftRearMotor.follow(leftFrontMotor);
-    //rightRearMotor.follow(rightFrontMotor);
-    //leftRearMotor.(leftFrontMotor);
-    //drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
-    drive.setSafetyEnabled(true);
-    
-  }
-
+  //***** END CANSPARKMAX DRIVE CODE *****
 
 
   //***** BEGIN TALON DRIVE CODE *****
@@ -85,6 +75,13 @@ public class ExampleSubsystem extends SubsystemBase {
   //}
 
   //***** END TALON DRIVE CODE *****/
+
+
+  public ExampleSubsystem() {
+    //what?
+    drive.setSafetyEnabled(true);
+  }
+
 
 
 
