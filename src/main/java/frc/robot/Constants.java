@@ -23,4 +23,10 @@ public final class Constants {
 	public static int rightRearMotorPort = 3;
 	public static int driverStickPort = 0;
 	public static double driveScale = 0.88; //represents maximum speed for the robot's drivetrain
+	public static int conveyorSensor0Port = 4;
+	public static int conveyorSensor1Port = 5;
+	public static int conveyorSensor2Port = 6;
+	public static int conveyorSensor3Port = 7;
+	public static int conveyorSensor4Port = 8;
+	public static int conveyorSensor5Port = 9;
 }

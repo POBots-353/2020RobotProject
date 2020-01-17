@@ -13,6 +13,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.DigitalInput;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -26,6 +27,13 @@ public class RobotContainer {
   public final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
+
+  public final static DigitalInput conveyorSensor0 = new DigitalInput(Constants.conveyorSensor0Port); //Use DigitalInput to get values from photoelectric sensor
+  public final static DigitalInput conveyorSensor1 = new DigitalInput(Constants.conveyorSensor1Port); //https://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/DigitalInput.html
+  public final static DigitalInput conveyorSensor2 = new DigitalInput(Constants.conveyorSensor2Port); //https://www.chiefdelphi.com/t/how-to-wire-and-program-photoelectric-sensors-beginner/342448/6
+  public final static DigitalInput conveyorSensor3 = new DigitalInput(Constants.conveyorSensor3Port);
+  public final static DigitalInput conveyorSensor4 = new DigitalInput(Constants.conveyorSensor4Port);
+  public final static DigitalInput conveyorSensor5 = new DigitalInput(Constants.conveyorSensor5Port);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
