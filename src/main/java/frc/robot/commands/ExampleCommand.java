@@ -42,9 +42,10 @@ public class ExampleCommand extends CommandBase {
 
     double move = RobotContainer.driverStick.getY();
     double turn = RobotContainer.driverStick.getX();
-    double scale = Constants.driveScale;
+   
+    //double scale = Constants.driveScale;
     
-    m_subsystem.manualDrive(move, turn, scale);    
+    m_subsystem.manualDrive(move, turn, scaleConstant());    
     
   }
 
@@ -57,5 +58,22 @@ public class ExampleCommand extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  //From CR's yellow sheet "turbo" method by CR 1/18/2020
+  public double scaleConstant(){
+    double scale = 0.0;
+    boolean turbo = RobotContainer.driverStick.getRawButton(0);
+    boolean slow = RobotContainer.driverStick.getRawButton(1);
+    if(turbo == true){ //Turbo no cap on throttle
+      scale = 1;
+    }
+    else if(slow==true){ //slow drive
+      scale = .5;
+    }
+    else{
+      scale = 0.88; //drivers constant
+    }
+    return scale;
   }
 }

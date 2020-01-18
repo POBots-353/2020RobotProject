@@ -35,6 +35,7 @@ public class RobotContainer {
   public final static DigitalInput conveyorSensor4 = new DigitalInput(Constants.conveyorSensor4Port);
   public final static DigitalInput conveyorSensor5 = new DigitalInput(Constants.conveyorSensor5Port);
 
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
