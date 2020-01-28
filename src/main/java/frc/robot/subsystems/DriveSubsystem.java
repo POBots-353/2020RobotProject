@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 
 
-public class ExampleSubsystem extends SubsystemBase {
+public class DriveSubsystem extends SubsystemBase {
   
 
   //***** BEGIN CANSPARKMAX DRIVE CODE *****
@@ -77,7 +77,7 @@ public class ExampleSubsystem extends SubsystemBase {
   //***** END TALON DRIVE CODE *****/
 
 
-  public ExampleSubsystem() {
+  public DriveSubsystem() {
     //what?
     drive.setSafetyEnabled(true);
   }

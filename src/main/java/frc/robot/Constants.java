@@ -17,17 +17,19 @@ package frc.robot;
  */
 public final class Constants {
 
+	//drive constants
 	public static int leftFrontMotorPort = 4; 
 	public static int leftRearMotorPort = 2;
 	public static int rightFrontMotorPort = 1;
 	public static int rightRearMotorPort = 3;
 	public static int driverStickPort = 0;
+
+	//intake constant
+	public static int intakeMotorPort = 5;
+	public static int conveyorMotorPort = 6;
+
 	//below line replaced by method for modularity
 	//public static double driveScale = 0.88; //represents maximum speed for the robot's drivetrain
 	public static int conveyorSensor0Port = 4;
 	public static int conveyorSensor1Port = 5;
-	public static int conveyorSensor2Port = 6;
-	public static int conveyorSensor3Port = 7;
-	public static int conveyorSensor4Port = 8;
-	public static int conveyorSensor5Port = 9;
 }

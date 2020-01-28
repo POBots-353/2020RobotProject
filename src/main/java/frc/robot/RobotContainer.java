@@ -9,8 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.ManualDriveCommand;
+import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -21,21 +21,20 @@ import edu.wpi.first.wpilibj.DigitalInput;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  public final static ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  public final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  // The robot's subsystems and commands are defined here...
+  public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public final ManualDriveCommand autoCommand = new ManualDriveCommand(driveSubsystem);
   
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
-
-  public final static DigitalInput conveyorSensor0 = new DigitalInput(Constants.conveyorSensor0Port); //Use DigitalInput to get values from photoelectric sensor
-  public final static DigitalInput conveyorSensor1 = new DigitalInput(Constants.conveyorSensor1Port); //https://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/DigitalInput.html
-  public final static DigitalInput conveyorSensor2 = new DigitalInput(Constants.conveyorSensor2Port); //https://www.chiefdelphi.com/t/how-to-wire-and-program-photoelectric-sensors-beginner/342448/6
-  public final static DigitalInput conveyorSensor3 = new DigitalInput(Constants.conveyorSensor3Port);
-  public final static DigitalInput conveyorSensor4 = new DigitalInput(Constants.conveyorSensor4Port);
-  public final static DigitalInput conveyorSensor5 = new DigitalInput(Constants.conveyorSensor5Port);
-
   
+  //Use DigitalInput to get values from photoelectric sensor
+  //https://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/DigitalInput.html
+  //https://www.chiefdelphi.com/t/how-to-wire-and-program-photoelectric-sensors-beginner/342448/6
+  public final static DigitalInput intakeSensor = new DigitalInput(Constants.conveyorSensor0Port);
+  public final static DigitalInput conveyorSensor = new DigitalInput(Constants.conveyorSensor1Port);
+
+   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -51,8 +50,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //double move = driverStick.getY();
-    //double turn = driverStick.getX();
+
   }
 
 
@@ -63,6 +61,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return autoCommand;
   }
 }
