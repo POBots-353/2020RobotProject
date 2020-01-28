@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
 package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
@@ -12,10 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.*;
 
 
-
-/**
- * An example command that uses an example subsystem.
- */
+// A Command Class named ManualDriveCommand that uses a subsystem named DriveSubsystem
 public class ManualDriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem driveSubsystem;
@@ -42,8 +40,6 @@ public class ManualDriveCommand extends CommandBase {
 
     double move = RobotContainer.driverStick.getY();
     double turn = RobotContainer.driverStick.getX();
-   
-    //double scale = Constants.driveScale;
     
     driveSubsystem.manualDrive(move, turn, scaleConstant());    
     
@@ -61,6 +57,7 @@ public class ManualDriveCommand extends CommandBase {
   }
 
   //From CR's yellow sheet "turbo" method by CR 1/18/2020
+  //Creates a method scaleConstant()
   public double scaleConstant(){
     double scale = 0.0;
     boolean turbo = RobotContainer.driverStick.getRawButton(0);

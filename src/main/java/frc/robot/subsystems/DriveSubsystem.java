@@ -13,13 +13,13 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 import frc.robot.Constants;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 
 
@@ -28,10 +28,11 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 public class DriveSubsystem extends SubsystemBase {
   
 
-  //***** BEGIN CANSPARKMAX DRIVE CODE *****
+
+  //***** --------------- BEGIN CANSPARKMAX DRIVE CODE --------------- *****
 
   //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
-  //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int) ***
+  //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int)  being the port number and the motor type***
   public CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorPort,MotorType.kBrushless);
   public CANSparkMax leftRearMotor = new CANSparkMax(Constants.leftRearMotorPort, MotorType.kBrushless);
   public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
@@ -51,10 +52,11 @@ public class DriveSubsystem extends SubsystemBase {
     drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
   }
   
-  //***** END CANSPARKMAX DRIVE CODE *****
+  //***** --------------- END CANSPARKMAX DRIVE CODE --------------- *****
 
 
-  //***** BEGIN TALON DRIVE CODE *****
+
+  //***** --------------- BEGIN TALON DRIVE CODE --------------- *****
 
   //* Creates a WPI_TalonSRX variable leftMaster, leftSlave, rightMaster, and rightSlave *
   //*** These are all constructors of the WPI_TalonSRX class and take one parameter WPI_TalonSRX(int)
@@ -74,7 +76,8 @@ public class DriveSubsystem extends SubsystemBase {
     //drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
   //}
 
-  //***** END TALON DRIVE CODE *****/
+  //***** --------------- END TALON DRIVE CODE --------------- *****/
+
 
 
   public DriveSubsystem() {
@@ -84,10 +87,11 @@ public class DriveSubsystem extends SubsystemBase {
 
 
 
-
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+
+
 }

@@ -8,13 +8,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.OperatorIntakeSystem;
 
 public class OperatorIntakeCommand extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final OperatorIntakeSystem operatorIntakeSystem;
+  
   /**
-   * Creates a new OperatorIntakeCmd.
+   * Creates a new OperatorItakeCommand
+   *
+   * @param subsystem The subsystem used by this command.
    */
-  public OperatorIntakeCommand() {
+  public OperatorIntakeCommand(OperatorIntakeSystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    operatorIntakeSystem = subsystem;
+    addRequirements(operatorIntakeSystem);
+
   }
 
   // Called when the command is initially scheduled.
@@ -25,7 +34,8 @@ public class OperatorIntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  }
+    operatorIntakeSystem.periodic();
+  }  
 
   // Called once the command ends or is interrupted.
   @Override

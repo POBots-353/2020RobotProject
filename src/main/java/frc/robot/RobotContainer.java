@@ -10,7 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ManualDriveCommand;
+import frc.robot.commands.OperatorIntakeCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.OperatorIntakeSystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -24,13 +26,14 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
-  public final ManualDriveCommand autoCommand = new ManualDriveCommand(driveSubsystem);
-  
-  public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
+  public final ManualDriveCommand manualDriveCommand = new ManualDriveCommand(driveSubsystem);
+  public final static OperatorIntakeSystem operatorIntakeSystem = new OperatorIntakeSystem();
+  public final OperatorIntakeCommand operatorIntakeCommand = new OperatorIntakeCommand(operatorIntakeSystem);
   
   //Use DigitalInput to get values from photoelectric sensor
   //https://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/DigitalInput.html
   //https://www.chiefdelphi.com/t/how-to-wire-and-program-photoelectric-sensors-beginner/342448/6
+  public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
   public final static DigitalInput intakeSensor = new DigitalInput(Constants.conveyorSensor0Port);
   public final static DigitalInput conveyorSensor = new DigitalInput(Constants.conveyorSensor1Port);
 
@@ -61,6 +64,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return autoCommand;
+    return manualDriveCommand;
   }
 }
