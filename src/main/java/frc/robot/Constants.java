@@ -39,7 +39,7 @@ public final class Constants {
 	public static int colorWheelDeviceID = -1;
 
 	//Spike Relay Number constants
-	public static int intakeSolenoidNumber = -1;
+	public static int intakeSpikeNumber = -1;
 
 	//Sensor number constants
 	public static int intakeSensorNumber = -1;
