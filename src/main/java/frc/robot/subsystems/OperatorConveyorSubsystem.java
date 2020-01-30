@@ -18,6 +18,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class OperatorConveyorSubsystem extends SubsystemBase {
+  
+  public CANSparkMax conveyorMotor = new CANSparkMax(Constants.conveyorMotorDeviceID,MotorType.kBrushless);
+  public final static DigitalInput conveyorSensor = new DigitalInput(Constants.conveyorSensorNumber);
+
+
+
+  
   /**
    * Creates a new OperatorConveyorSubsystem.
    */
@@ -28,5 +35,23 @@ public class OperatorConveyorSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
+    boolean conveyorUp = RobotContainer.operatorStick.getRawButtonPressed(Constants.conveyorUpButtonNumber);
+    boolean conveyorDown = RobotContainer.operatorStick.getRawButtonPressed(Constants.conveyorDownButtonNumber);
+   
+    if (conveyorUp == true && conveyorDown == false){
+      conveyorMotor.set(Constants.intakeMotorSpeed);
+      if(conveyorSensor.get() == true){
+        conveyorMotor.set(0);
+      }
+    } else if (conveyorDown == true && conveyorUp == false){
+      conveyorMotor.set(-Constants.conveyorMotorSpeed);
+    } else{
+      conveyorMotor.set(0);
+    }
+
   }
+
+
 }
+
