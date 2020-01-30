@@ -66,8 +66,8 @@ public final class Constants {
 	public static int colorBackupButtonNumber = -1;
 
 	//Constants for angular and linear alignment within AlignRobotCommand()
-	public static double kPAim = 0.01;
-	public static double kPDistance = 0.01;
+	public static double kPAim = 0.1;
+	public static double kPDistance = 0.1;
 	public static double minHeadingError = 1.0;
 	public static double minDistanceError = 1.0;
 

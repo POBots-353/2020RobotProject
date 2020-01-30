@@ -29,8 +29,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
   public final ManualDriveCommand manualDriveCommand = new ManualDriveCommand(driveSubsystem);
-  public final static OperatorIntakeSystem operatorIntakeSystem = new OperatorIntakeSystem();
-  public final static DropIntakeSubsystem dropIntakeSubsystem = new DropIntakeSubsystem();
+  //public final static OperatorIntakeSystem operatorIntakeSystem = new OperatorIntakeSystem();
+  //public final static DropIntakeSubsystem dropIntakeSubsystem = new DropIntakeSubsystem();
   
   //Use DigitalInput to get values from photoelectric sensor
   //https://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/DigitalInput.html

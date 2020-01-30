@@ -44,12 +44,8 @@ public class AlignRobotCommand extends CommandBase {
     
     double turn = headingError * Constants.kPAim;
     double move = distanceError * Constants.kPDistance;
-    if(tv >= 1.0){
-      driveSubsystem.autoAlignDrive(move, turn);
-
-    } else{
-      driveSubsystem.autoAlignDrive(0, 0);
-    }
+    
+    driveSubsystem.autoAlignDrive(move, turn);
 
   }
 

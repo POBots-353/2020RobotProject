@@ -48,7 +48,7 @@ public class OperatorIntakeSystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-
+    
     boolean intake = RobotContainer.driverStick.getRawButtonPressed(Constants.intakeButtonNumber);
     boolean outtake = RobotContainer.driverStick.getRawButtonPressed(Constants.outtakeButtonNumber);
 
