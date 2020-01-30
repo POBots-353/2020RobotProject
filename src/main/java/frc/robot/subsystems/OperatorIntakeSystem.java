@@ -18,6 +18,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 
 
@@ -27,13 +28,14 @@ public class OperatorIntakeSystem extends SubsystemBase {
 
 
 
-  //***** --------------- BEGIN CANSPARKMAX DRIVE CODE --------------- *****
+  public CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorDeviceID,MotorType.kBrushless);
+  public CANSparkMax conveyorMotor = new CANSparkMax(Constants.conveyorMotorDeviceID,MotorType.kBrushless); //we may in the future have a second conveyorMotor so you'd group them together
+
+  public final static DigitalInput intakeSensor = new DigitalInput(Constants.intakeSensorNumber);
+  public final static DigitalInput conveyorSensor = new DigitalInput(Constants.conveyorSensorNumber);
+
 
   
-  public CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorPort,MotorType.kBrushless);
-  public CANSparkMax conveyorMotor = new CANSparkMax(Constants.conveyorMotorPort,MotorType.kBrushless); //we may in the future have a second conveyorMotor so you'd group them together
-
-
   /**
    * Creates a new OperatorIntakeSystem.
    */
@@ -47,18 +49,17 @@ public class OperatorIntakeSystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
 
-    boolean intake = RobotContainer.driverStick.getRawButtonPressed(3);
-    boolean outtake = RobotContainer.driverStick.getRawButtonPressed(4);
+    boolean intake = RobotContainer.driverStick.getRawButtonPressed(Constants.intakeButtonNumber);
+    boolean outtake = RobotContainer.driverStick.getRawButtonPressed(Constants.outtakeButtonNumber);
 
     if (intake == true && outtake == false){
-      intakeMotor.set(0.5);
-      while(RobotContainer.intakeSensor.get() == true){
-        conveyorMotor.set(0.25);
+      intakeMotor.set(Constants.intakeMotorSpeed);
+      if(intakeSensor.get() == true){
+        conveyorMotor.set(Constants.conveyorMotorSpeed);
       }
-      conveyorMotor.set(0);
     } else if (outtake == true && intake == false){
-      conveyorMotor.set(-0.25);
-      intakeMotor.set(-0.5); //Need to decide how fast we want to outake (-1 to 1) and which direction (positive or negative) is out
+      conveyorMotor.set(-Constants.intakeMotorSpeed); //Need Camerons Input
+      intakeMotor.set(-Constants.conveyorMotorSpeed); //Need to decide how fast we want to outake (-1 to 1) and which direction (positive or negative) is out
     } else{
       conveyorMotor.set(0);
       intakeMotor.set(0);

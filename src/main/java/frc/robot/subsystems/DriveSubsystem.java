@@ -33,10 +33,10 @@ public class DriveSubsystem extends SubsystemBase {
 
   //* Creates a CANSparkMax varible leftFrontMotor, leftRearMotor, rightFrontMotor, and rightRearMotor that are all MotorType kBrushless *
   //*** These are all constructors of the CANSparkMax class and take two parameters CANSparkMax(int, int)  being the port number and the motor type***
-  public CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorPort,MotorType.kBrushless);
-  public CANSparkMax leftRearMotor = new CANSparkMax(Constants.leftRearMotorPort, MotorType.kBrushless);
-  public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorPort, MotorType.kBrushless);
-  public CANSparkMax rightRearMotor = new CANSparkMax(Constants.rightRearMotorPort, MotorType.kBrushless);
+  public CANSparkMax leftFrontMotor = new CANSparkMax(Constants.leftFrontMotorDeviceID,MotorType.kBrushless);
+  public CANSparkMax leftRearMotor = new CANSparkMax(Constants.leftRearMotorDeviceID, MotorType.kBrushless);
+  public CANSparkMax rightFrontMotor = new CANSparkMax(Constants.rightFrontMotorDeviceID, MotorType.kBrushless);
+  public CANSparkMax rightRearMotor = new CANSparkMax(Constants.rightRearMotorDeviceID, MotorType.kBrushless);
 
   //* Creates a SpeedControllerGroup with the (leftFrontMotor and leftRearMotor) and another SpeedControllerGroup with the (rightFrontMotor and rightRearMotor) *
   //*** This allows us to command both the right side motors or the left side motors at the same time ***
@@ -51,7 +51,9 @@ public class DriveSubsystem extends SubsystemBase {
   public void manualDrive(double move, double turn, double scale){
     drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
   }
-  
+  public void autoAlignDrive(double move, double turn){
+    drive.arcadeDrive(-move, turn);
+  }
   //***** --------------- END CANSPARKMAX DRIVE CODE --------------- *****
 
 

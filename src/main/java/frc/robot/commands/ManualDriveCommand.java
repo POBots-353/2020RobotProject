@@ -48,6 +48,9 @@ public class ManualDriveCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    if(interrupted){
+      driveSubsystem.manualDrive(0, 0, 0);
+    }
   }
 
   // Returns true when the command should end.
@@ -60,16 +63,16 @@ public class ManualDriveCommand extends CommandBase {
   //Creates a method scaleConstant()
   public double scaleConstant(){
     double scale = 0.0;
-    boolean turbo = RobotContainer.driverStick.getRawButton(0);
-    boolean slow = RobotContainer.driverStick.getRawButton(1);
+    boolean turbo = RobotContainer.driverStick.getRawButton(Constants.turboButtonNumber);
+    boolean slow = RobotContainer.driverStick.getRawButton(Constants.slowButtonNumber);
     if(turbo == true){ //Turbo no cap on throttle
-      scale = 1;
+      scale = Constants.turboScale;
     }
     else if(slow==true){ //slow drive
-      scale = .5;
+      scale = Constants.slowScale;
     }
     else{
-      scale = 0.88; //drivers constant
+      scale = Constants.driverScale; //drivers constant
     }
     return scale;
   }

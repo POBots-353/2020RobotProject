@@ -17,19 +17,66 @@ package frc.robot;
  */
 public final class Constants {
 
-	//drive constants
-	public static int leftFrontMotorPort = 4; 
-	public static int leftRearMotorPort = 2;
-	public static int rightFrontMotorPort = 1;
-	public static int rightRearMotorPort = 3;
+	//Computer outlets are called Port
+	//CAN motors are called DeviceID
+	//Sensors placements are called Number
+
+	//Joystick and controller port constants
 	public static int driverStickPort = 0;
+	public static int operatorStickPort = 1;
+	public static int colorWheelControllerPort = -1;
 
-	//intake constant
-	public static int intakeMotorPort = 5;
-	public static int conveyorMotorPort = 6;
+	//CANSparkMax Device ID constants
+	public static int leftFrontMotorDeviceID = 4; 
+	public static int leftRearMotorDeviceID = 2;
+	public static int rightFrontMotorDeviceID = 1;
+	public static int rightRearMotorDeviceID = 3;
+	public static int intakeMotorDeviceID = -1;
+	public static int conveyorMotorDeviceID = -1;
+	public static int shooterMotorDeviceID = -1;
+	public static int climberMotorDeviceID = -1;
+	public static int colorWheelDeviceID = -1;
 
-	//below line replaced by method for modularity
-	//public static double driveScale = 0.88; //represents maximum speed for the robot's drivetrain
-	public static int conveyorSensor0Port = 4;
-	public static int conveyorSensor1Port = 5;
+	//Sensor number constants
+	public static int intakeSensorNumber = -1;
+	public static int conveyorSensorNumber = -1;
+	public static int shooterSensorNumber = -1;
+	public static int colorSensorNumber = -1;
+	 
+	//Driver button constants
+	public static int turboButtonNumber = 1;
+	public static int slowButtonNumber = 2;
+
+	//Operator button constants
+	public static int AutoAlignButtonNumber = 1;
+	public static int shootButtonNumber = 2;
+	public static int intakeButtonNumber = 3;
+	public static int outtakeButtonNumber = 4;
+	public static int conveyorUpButtonNumber = 5;
+	public static int conveyorDownButtonNumber = 6;
+	public static int climberUpButtonNumber = 7;
+	public static int climberDownButtonNumber = 8;
+	public static int dropIntakeButtonNumber = 9;
+	public static int hoodUpButtonNumber = -1;
+	public static int hoodDownButtonNumber = -1;
+	public static int colorBlueButtonNumber = -1;
+	public static int colorRedButtonNumber = -1;
+	public static int colorYellowButtonNumber = -1;
+	public static int colorGreenButtonNumber = -1;
+	public static int colorBackupButtonNumber = -1;
+
+	//Constants for angular and linear alignment within AlignRobotCommand()
+	public static double kPAim = 0.01;
+	public static double kPDistance = 0.01;
+	public static double minHeadingError = 1.0;
+	public static double minDistanceError = 1.0;
+
+	//Constants for driving modes within ManualDriveCommand()
+	public static double turboScale = 1.00; //faster speed for the robot's drivetrain
+	public static double slowScale = 0.5; //Slower speed for the robot's drivetrain
+	public static double driverScale = 0.88; //Original speed for the robot's drivetrain
+
+	//Constants for motor speeds within OperatorIntakeSystem()
+	public static double intakeMotorSpeed = 0.5;
+	public static double conveyorMotorSpeed = 0.15;
 }

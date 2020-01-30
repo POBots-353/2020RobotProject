@@ -9,13 +9,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AlignRobotCommand;
+//import frc.robot.commands.DropIntakeCommand;
 import frc.robot.commands.ManualDriveCommand;
-import frc.robot.commands.OperatorIntakeCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.OperatorIntakeSystem;
+import frc.robot.subsystems.DropIntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.DigitalInput;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -28,21 +30,20 @@ public class RobotContainer {
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
   public final ManualDriveCommand manualDriveCommand = new ManualDriveCommand(driveSubsystem);
   public final static OperatorIntakeSystem operatorIntakeSystem = new OperatorIntakeSystem();
-  public final OperatorIntakeCommand operatorIntakeCommand = new OperatorIntakeCommand(operatorIntakeSystem);
+  public final static DropIntakeSubsystem dropIntakeSubsystem = new DropIntakeSubsystem();
   
   //Use DigitalInput to get values from photoelectric sensor
   //https://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/DigitalInput.html
   //https://www.chiefdelphi.com/t/how-to-wire-and-program-photoelectric-sensors-beginner/342448/6
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
-  public final static DigitalInput intakeSensor = new DigitalInput(Constants.conveyorSensor0Port);
-  public final static DigitalInput conveyorSensor = new DigitalInput(Constants.conveyorSensor1Port);
-
+  public final static Joystick operatorStick = new Joystick(Constants.operatorStickPort);
    
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
+    driveSubsystem.setDefaultCommand(new ManualDriveCommand(driveSubsystem));
     configureButtonBindings();
   }
 
@@ -53,7 +54,11 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    JoystickButton magicButton = new JoystickButton(operatorStick, Constants.AutoAlignButtonNumber);
+    magicButton.whenPressed(new AlignRobotCommand(driveSubsystem))
+    .whenReleased(new ManualDriveCommand(driveSubsystem));
+    //JoystickButton dropIntakeButton = new JoystickButton(operatorStick, Constants.dropIntakeButtonNumber);
+    //dropIntakeButton.whenPressed(new DropIntakeCommand(dropIntakeSubsystem));
   }
 
 
