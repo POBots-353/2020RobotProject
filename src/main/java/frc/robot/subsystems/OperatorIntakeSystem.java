@@ -58,7 +58,7 @@ public class OperatorIntakeSystem extends SubsystemBase {
         conveyorMotor.set(Constants.conveyorMotorSpeed);
       }
     } else if (outtake == true && intake == false){
-      conveyorMotor.set(-Constants.intakeMotorSpeed); //Need Camerons Input
+      //conveyorMotor.set(-Constants.intakeMotorSpeed); //Need Camerons Input
       intakeMotor.set(-Constants.conveyorMotorSpeed); //Need to decide how fast we want to outake (-1 to 1) and which direction (positive or negative) is out
     } else{
       conveyorMotor.set(0);

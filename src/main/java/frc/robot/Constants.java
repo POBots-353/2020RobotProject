@@ -18,8 +18,9 @@ package frc.robot;
 public final class Constants {
 
 	//Computer outlets are called Port
-	//CAN motors are called DeviceID
+	//CANSparkMax motors are called DeviceID
 	//Sensors placements are called Number
+	//Buttons on the joysticks are called Number
 
 	//Joystick and controller port constants
 	public static int driverStickPort = 0;
@@ -36,6 +37,9 @@ public final class Constants {
 	public static int shooterMotorDeviceID = -1;
 	public static int climberMotorDeviceID = -1;
 	public static int colorWheelDeviceID = -1;
+
+	//Spike Relay Number constants
+	public static int intakeSolenoidNumber = -1;
 
 	//Sensor number constants
 	public static int intakeSensorNumber = -1;
@@ -79,4 +83,7 @@ public final class Constants {
 	//Constants for motor speeds within OperatorIntakeSystem()
 	public static double intakeMotorSpeed = 0.5;
 	public static double conveyorMotorSpeed = 0.15;
+
+	//Constants for Solenoids within DropIntakeSubsystem()
+	
 }
