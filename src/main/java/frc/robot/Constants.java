@@ -74,8 +74,8 @@ public final class Constants {
 	public static double kPDistance = 0.1;
 	public static double maxMove = 0.5;
 	public static double maxTurn = 0.25;
-	public static double minHeadingError = 1.0;
-	public static double minDistanceError = 1.0;
+	public static double minHeadingError = 0.50;
+	public static double minDistanceError = 0.50;
 
 	//Constants for driving modes within ManualDriveCommand()
 	public static double turboScale = 1.00; //faster speed for the robot's drivetrain

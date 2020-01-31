@@ -57,7 +57,7 @@ public class DriveSubsystem extends SubsystemBase {
   //* Creates a autoAlignDrive(double, double) method that takes in the x and y values from the Constants() class variables kPAim for move and kPDistance for turn and sends them to the function arcadeDrive(int, int) *
   //*** This allows us to call a autoAlignDrive(double, double) method that lets us use the limelight to autonomously drive ***
   public void autoAlignDrive(double move, double turn){
-    drive.arcadeDrive(-move, turn);
+    drive.arcadeDrive(move, -turn);
   }
 
   //***** --------------- END CANSPARKMAX DRIVE CODE --------------- *****
