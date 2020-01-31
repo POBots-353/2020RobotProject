@@ -54,7 +54,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton magicButton = new JoystickButton(operatorStick, Constants.AutoAlignButtonNumber);
+    JoystickButton magicButton = new JoystickButton(driverStick, Constants.AutoAlignButtonNumber);
     magicButton.whileHeld(new AlignRobotCommand(driveSubsystem))
     .whenReleased(new ManualDriveCommand(driveSubsystem));
     //JoystickButton dropIntakeButton = new JoystickButton(operatorStick, Constants.dropIntakeButtonNumber);
