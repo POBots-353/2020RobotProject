@@ -36,7 +36,7 @@ public final class Constants {
 	public static int conveyorMotorDeviceID = -1;
 	public static int shooterMotorDeviceID = -1;
 	public static int climberMotorDeviceID = -1;
-	public static int colorWheelDeviceID = -1;
+	//public static int colorWheelDeviceID = -1;
 
 	//Spike Relay Number constants
 	public static int intakeSpikeNumber = -1;
@@ -70,9 +70,10 @@ public final class Constants {
 	public static int colorBackupButtonNumber = -1;
 
 	//Constants for angular and linear alignment within AlignRobotCommand()
-	public static double kPAim = 0.1;
+	public static double kPAim = 0.075;
 	public static double kPDistance = 0.1;
-
+	public static double maxMove = 0.5;
+	public static double maxTurn = 0.25;
 	public static double minHeadingError = 1.0;
 	public static double minDistanceError = 1.0;
 
