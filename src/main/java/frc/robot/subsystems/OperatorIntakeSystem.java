@@ -28,43 +28,54 @@ public class OperatorIntakeSystem extends SubsystemBase {
 
 
 
+  //* Creates two CANSparkMax variables intakeMotor and conveyorMotor *
+  //*** This is a constructor of the CANSparkMax class and takes two parameters CANSparkMax(int, int) being the port number and the MotorType ***
   public CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorDeviceID,MotorType.kBrushless);
   public CANSparkMax conveyorMotor = new CANSparkMax(Constants.conveyorMotorDeviceID,MotorType.kBrushless); //we may in the future have a second conveyorMotor so you'd group them together
 
+
+  
+  //* Creates two DigitalInput variables intakeSensor and conveyorSensor *
+  //*** These are constructors of the DigitalInput class and takes one parameter DigitalInput(int) being the port number ***
   public final static DigitalInput intakeSensor = new DigitalInput(Constants.intakeSensorNumber);
   public final static DigitalInput conveyorSensor = new DigitalInput(Constants.conveyorSensorNumber);
 
 
   
-  /**
-   * Creates a new OperatorIntakeSystem.
-   */
+  //* Creates a constructor of the class OperatorIntakeSystem() *
+  //*** This allows us to create instances of the class OperatorIntakeSystem() and can be called in other classes ***
   public OperatorIntakeSystem() {
 
   }
+
 
 
   //* Creates a method periodic() that will be called once per scheduler run *
   //*** This allows us to repeate sections of code and acts similar in nature to a loop ***
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
     
+    //* Creates two boolean values (true or false) that indicates whether or not buttons intake and outtake have been pressed or not *
+    //*** True represents the button was pressed and false represents that the button was not pressed ***
     boolean intake = RobotContainer.driverStick.getRawButtonPressed(Constants.intakeButtonNumber);
     boolean outtake = RobotContainer.driverStick.getRawButtonPressed(Constants.outtakeButtonNumber);
 
+    //* "if" tests if intake is true (pressed) and outtake is false (not pressed) which will start the intakeMotor to bring in new balls *
+    //* Nested "if" tests whether intakeSensor is true and will start the conveyorMotor *
+    //* "else if" tests if outtake is true (pressed) and intake is false (not pressed) which will start the intakeMotor in the opposite direction to get balls out of the intake *
+    //* "else" makes it so any other combination of outtake and intake occurs it stops the intakeMotor and conveyorMotor *
     if (intake == true && outtake == false){
       intakeMotor.set(Constants.intakeMotorSpeed);
       if(intakeSensor.get() == true){
         conveyorMotor.set(Constants.conveyorMotorSpeed);
       }
     } else if (outtake == true && intake == false){
-      //conveyorMotor.set(-Constants.intakeMotorSpeed); //Need Camerons Input
-      intakeMotor.set(-Constants.conveyorMotorSpeed); //Need to decide how fast we want to outake (-1 to 1) and which direction (positive or negative) is out
+      intakeMotor.set(-Constants.conveyorMotorSpeed);
     } else{
       conveyorMotor.set(0);
       intakeMotor.set(0);
     }
+
   }
 
 
