@@ -44,7 +44,8 @@ public class OperatorIntakeSystem extends SubsystemBase {
   }
 
 
-
+  //* Creates a method periodic() that will be called once per scheduler run *
+  //*** This allows us to repeate sections of code and acts similar in nature to a loop ***
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

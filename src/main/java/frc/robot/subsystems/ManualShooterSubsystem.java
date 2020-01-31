@@ -5,56 +5,47 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
-
-
-
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Timer;
 
+public class ManualShooterSubsystem extends SubsystemBase {
 
+  public final static DigitalInput manualshooterSensor = new DigitalInput(Constants.shooterSensorNumber);
+  public CANSparkMax manualshooterMotor = new CANSparkMax(Constants.shooterMotorDeviceID,MotorType.kBrushless);
 
-
-
-public class DropIntakeSubsystem extends SubsystemBase {
-
-
-
-  //* Creates a Relay varible intakeSpike *
-  //*** This is a constructor of the Realy class and takes one parameter Relay(int) being the port number ***
-  Relay intakeSpike = new Relay(Constants.intakeSpikeNumber);
-  
-
-
-  //* Creates a constructor of the class DropIntakeSubsystem() *
-  //*** This allows us to create instances of the class DropIntakeSubsystem() and can be called in other classes ***
-  public DropIntakeSubsystem() {
-
+  /**
+  * Creates a new ManualShooter.
+  */
+  public ManualShooterSubsystem() {
+    
   }
-
 
   //* Creates a method periodic() that will be called once per scheduler run *
   //*** This allows us to repeate sections of code and acts similar in nature to a loop ***
   @Override
   public void periodic() {
 
-    boolean release = RobotContainer.operatorStick.getRawButtonPressed(Constants.dropIntakeButtonNumber);
+    boolean ManualShooter = RobotContainer.operatorStick.getRawButtonPressed(Constants.manualshooterButtonNumber);
     
-    if(release == true){
-      intakeSpike.set(Relay.Value.kOn);
-      Timer.delay(Constants.solenoidHoldTime);
-      intakeSpike.set(Relay.Value.kOff);
+    if (ManualShooter == true){
+
+      if (manualshooterSensor.get() == true){
+        manualshooterMotor.set(Constants.manualShooterSpeed);
+      } else{
+        manualshooterMotor.set(0.0);
+      }
+
+    } else{
+      manualshooterMotor.set(0.0);
     }
-
   }
-
-
-
 }
