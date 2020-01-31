@@ -55,7 +55,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton magicButton = new JoystickButton(operatorStick, Constants.AutoAlignButtonNumber);
-    magicButton.whenPressed(new AlignRobotCommand(driveSubsystem))
+    magicButton.whileHeld(new AlignRobotCommand(driveSubsystem))
     .whenReleased(new ManualDriveCommand(driveSubsystem));
     //JoystickButton dropIntakeButton = new JoystickButton(operatorStick, Constants.dropIntakeButtonNumber);
     //dropIntakeButton.whenPressed(new DropIntakeCommand(dropIntakeSubsystem));
