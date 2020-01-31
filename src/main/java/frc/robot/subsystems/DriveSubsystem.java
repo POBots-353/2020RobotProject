@@ -45,53 +45,38 @@ public class DriveSubsystem extends SubsystemBase {
   SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
   
   //* Creates a DifferentialDrive variable drive that pairs the leftMotorGroup and rightMotorGroup to take two parameters to drive (move and turn) *
+  //*** This creates an instance of the class DifferentialDrive(motor, motor) and allows us to access any methods within that class ***
   public DifferentialDrive drive = new DifferentialDrive(leftMotorGroup,rightMotorGroup);
 
   //* Creates a manualDrive(double, double, double) method that takes in the x and y values from the joystick as well as the scale and sends them to the function arcadeDrive(int, int) *
+  //*** This allows us to call a manualDrive(double, double, double) method that lets us use a joystick or controller to control the speed and direction of the robot ***
   public void manualDrive(double move, double turn, double scale){
     drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
   }
+
+  //* Creates a autoAlignDrive(double, double) method that takes in the x and y values from the Constants() class variables kPAim for move and kPDistance for turn and sends them to the function arcadeDrive(int, int) *
+  //*** This allows us to call a autoAlignDrive(double, double) method that lets us use the limelight to autonomously drive ***
   public void autoAlignDrive(double move, double turn){
     drive.arcadeDrive(-move, turn);
   }
+
   //***** --------------- END CANSPARKMAX DRIVE CODE --------------- *****
 
 
 
-  //***** --------------- BEGIN TALON DRIVE CODE --------------- *****
-
-  //* Creates a WPI_TalonSRX variable leftMaster, leftSlave, rightMaster, and rightSlave *
-  //*** These are all constructors of the WPI_TalonSRX class and take one parameter WPI_TalonSRX(int)
-  //public WPI_TalonSRX leftMaster = new WPI_TalonSRX(RobotMap.leftMasterPort);
-  //public WPI_TalonSRX leftSlave = new WPI_TalonSRX(RobotMap.leftSlavePort);
-  //public WPI_TalonSRX rightMaster = new WPI_TalonSRX(RobotMap.rightMasterPort);
-  //public WPI_TalonSRX rightSlave = new WPI_TalonSRX(RobotMap.rightSlavePort);
-  
-  //public DifferentialDrive drive = new DifferentialDrive(leftMaster,rightMaster);
-  
-  //public DriveSubsystem(){
-    //leftSlave.follow(leftMaster);
-    //rightSlave.follow(rightMaster);
-  //}
-
-  //public void manualDrive(double move, double turn, double scale){
-    //drive.arcadeDrive(-move * Math.abs(move) * scale, turn * Math.abs(turn) * scale); //Riley came up with the absolute value idea--> very smart
-  //}
-
-  //***** --------------- END TALON DRIVE CODE --------------- *****/
-
-
-
+  //* Creates a constructor of the class DriveSubsystem() and sets the DifferentialDrive() variable drive to true *
+  //*** This allows us to use the arcadeDrive() method and actually turn any of the motors in unison ***
   public DriveSubsystem() {
-    //what?
     drive.setSafetyEnabled(true);
   }
 
 
 
+  //* Creates a method periodic() that will be called once per scheduler run *
+  //*** This allows us to repeate sections of code and acts similar in nature to a loop ***
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    
   }
 
 

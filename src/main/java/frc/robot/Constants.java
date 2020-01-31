@@ -53,7 +53,7 @@ public final class Constants {
 
 	//Operator button constants
 	public static int AutoAlignButtonNumber = 1;
-	public static int shootButtonNumber = 2;
+	public static int manualshooterButtonNumber = 2;
 	public static int intakeButtonNumber = 3;
 	public static int outtakeButtonNumber = 4;
 	public static int conveyorUpButtonNumber = 5;
@@ -72,6 +72,7 @@ public final class Constants {
 	//Constants for angular and linear alignment within AlignRobotCommand()
 	public static double kPAim = 0.1;
 	public static double kPDistance = 0.1;
+
 	public static double minHeadingError = 1.0;
 	public static double minDistanceError = 1.0;
 
@@ -85,5 +86,11 @@ public final class Constants {
 	public static double conveyorMotorSpeed = 0.15;
 
 	//Constants for Solenoids within DropIntakeSubsystem()
+	public static double solenoidHoldTime = 2.0;
+
+	//Constants for motor speeds within ClimberSubsystem()
+	public static double climberMotorSpeed = 0.3;
 	
+	//Constants for motor speeds within ManualShooterSubsystem()
+	public static double manualShooterSpeed = 0.9;
 }
