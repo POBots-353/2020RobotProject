@@ -40,13 +40,18 @@ public class DropIntakeSubsystem extends SubsystemBase {
   }
 
 
+
   //* Creates a method periodic() that will be called once per scheduler run *
   //*** This allows us to repeate sections of code and acts similar in nature to a loop ***
   @Override
   public void periodic() {
 
+    //* Creates one boolean value (true or false) that indicates whether or not button release has been pressed or not *
+    //*** True represents the button was pressed and false represents that the button was not pressed ***
     boolean release = RobotContainer.operatorStick.getRawButtonPressed(Constants.dropIntakeButtonNumber);
     
+    //* "if" tests if release is true (pressed) which will give power to the electric solenoid *
+    //*** Giving power to the elctric solenoid will pull the pin in and cause whatever it was holding to be released ***
     if(release == true){
       intakeSpike.set(Relay.Value.kOn);
       Timer.delay(Constants.solenoidHoldTime);
