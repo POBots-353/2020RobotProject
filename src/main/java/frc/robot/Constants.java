@@ -36,7 +36,7 @@ public final class Constants {
 	public static int conveyorMotorDeviceID = -1;
 	public static int shooterMotorDeviceID = -1;
 	public static int climberMotorDeviceID = -1;
-	//public static int colorWheelDeviceID = -1;
+	public static int colorWheelDeviceID = -1;
 
 	//Spike Relay Number constants
 	public static int intakeSpikeNumber = -1;
@@ -94,4 +94,9 @@ public final class Constants {
 	
 	//Constants for motor speeds within ManualShooterSubsystem()
 	public static double manualShooterSpeed = 0.9;
+
+	public static double colorWheelMotorSpeed = 0.2;
+
+
+	
 }
