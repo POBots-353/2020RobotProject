@@ -61,7 +61,7 @@ public class ManualShooterSubsystem extends SubsystemBase {
     //* "else" makes it so when manualShooter is false (not pressed) it will stop the manualShooterMotor *
     if (manualShooter == true){
       if (manualShooterSensor.get() == true){
-        manualShooterMotor.set(Constants.manualShooterSpeed);
+        manualShooterMotor.set(Constants.shooterMotorSpeed);
       } else{
         manualShooterMotor.set(0.0);
       }

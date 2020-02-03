@@ -34,9 +34,16 @@ public final class Constants {
 	public static int rightRearMotorDeviceID = 3;
 	public static int intakeMotorDeviceID = -1;
 	public static int conveyorMotorDeviceID = -1;
-	public static int shooterMotorDeviceID = -1;
 	public static int climberMotorDeviceID = -1;
+	public static int shooterMotorDeviceID = -1;
 	public static int colorWheelDeviceID = -1;
+
+	//CANSParkMax Motor Speeds
+	public static double intakeMotorSpeed = 0.5;
+	public static double conveyorMotorSpeed = 0.15;
+	public static double climberMotorSpeed = 0.3;
+	public static double shooterMotorSpeed = 0.9;
+	public static double colorWheelMotorSpeed = 0.2;
 
 	//Spike Relay Number constants
 	public static int intakeSpikeNumber = -1;
@@ -82,21 +89,9 @@ public final class Constants {
 	public static double slowScale = 0.5; //Slower speed for the robot's drivetrain
 	public static double driverScale = 0.88; //Original speed for the robot's drivetrain
 
-	//Constants for motor speeds within OperatorIntakeSystem()
-	public static double intakeMotorSpeed = 0.5;
-	public static double conveyorMotorSpeed = 0.15;
-
 	//Constants for Solenoids within DropIntakeSubsystem()
 	public static double solenoidHoldTime = 2.0;
-
-	//Constants for motor speeds within ClimberSubsystem()
-	public static double climberMotorSpeed = 0.3;
 	
-	//Constants for motor speeds within ManualShooterSubsystem()
-	public static double manualShooterSpeed = 0.9;
-
-	public static double colorWheelMotorSpeed = 0.2;
-
 
 	
 }
