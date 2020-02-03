@@ -9,11 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutoColorWheel extends CommandBase {
+public class AutoColorWheelCommand extends CommandBase {
   /**
    * Creates a new AutoColorWheel.
    */
-  public AutoColorWheel() {
+  public AutoColorWheelCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

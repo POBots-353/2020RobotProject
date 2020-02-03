@@ -8,30 +8,53 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.ColorWheelSubsytem;
 
-public class ManualColorWheel extends CommandBase {
+public class ManualColorWheelCommand extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+
+
+
+  private final ColorWheelSubsytem colorWheelSubsytem;
+
+
+
   /**
-   * Creates a new ManualColorWheel.
+   * Creates a new ExampleCommand.
+   *
+   * @param subsystem The subsystem used by this command.
    */
-  public ManualColorWheel() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public ManualColorWheelCommand(ColorWheelSubsytem subsystem) {
+    colorWheelSubsytem = subsystem;
+    addRequirements(colorWheelSubsytem);
   }
+
+
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
   }
+
+
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
   }
+
+
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+
   }
 
+
+  
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
