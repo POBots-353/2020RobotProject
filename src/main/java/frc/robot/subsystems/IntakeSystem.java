@@ -10,6 +10,8 @@
 
 
 package frc.robot.subsystems;
+import frc.robot.Robot;
+
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -24,7 +26,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 
 
-public class OperatorIntakeSystem extends SubsystemBase {
+public class IntakeSystem extends SubsystemBase {
 
 
 
@@ -32,8 +34,9 @@ public class OperatorIntakeSystem extends SubsystemBase {
   //*** This is a constructor of the CANSparkMax class and takes two parameters CANSparkMax(int, int) being the port number and the MotorType ***
   public CANSparkMax intakeMotor = new CANSparkMax(Constants.intakeMotorDeviceID,MotorType.kBrushless);
   public CANSparkMax conveyorMotor = new CANSparkMax(Constants.conveyorMotorDeviceID,MotorType.kBrushless); //we may in the future have a second conveyorMotor so you'd group them together
+  public Robot robot = new Robot();
 
-
+  
   
   //* Creates two DigitalInput variables intakeSensor and conveyorSensor *
   //*** These are constructors of the DigitalInput class and takes one parameter DigitalInput(int) being the port number ***
@@ -44,7 +47,7 @@ public class OperatorIntakeSystem extends SubsystemBase {
   
   //* Creates a constructor of the class OperatorIntakeSystem() *
   //*** This allows us to create instances of the class OperatorIntakeSystem() and can be called in other classes ***
-  public OperatorIntakeSystem() {
+  public IntakeSystem() {
 
   }
 
@@ -67,13 +70,20 @@ public class OperatorIntakeSystem extends SubsystemBase {
     if (intake == true && outtake == false){
       intakeMotor.set(Constants.intakeMotorSpeed);
       if(intakeSensor.get() == true){
-        conveyorMotor.set(Constants.conveyorMotorSpeed);
+        //conveyorMotor.set(Constants.conveyorMotorSpeed);
+        robot.changeIntakeIn(true);
+        robot.changeIntakeOut(false);
       }
     } else if (outtake == true && intake == false){
       intakeMotor.set(-Constants.conveyorMotorSpeed);
+      robot.changeIntakeIn(false);
+      robot.changeIntakeOut(true);
     } else{
-      conveyorMotor.set(0);
+      //conveyorMotor.set(0);
       intakeMotor.set(0);
+      robot.changeIntakeIn(false);
+      robot.changeIntakeOut(false);
+
     }
 
   }
