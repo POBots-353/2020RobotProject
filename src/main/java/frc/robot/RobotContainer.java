@@ -13,6 +13,7 @@ import frc.robot.commands.AlignRobotCommand;
 //import frc.robot.commands.DropIntakeCommand;
 import frc.robot.commands.ManualDriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.HoodSubsystem;
 //import frc.robot.subsystems.OperatorIntakeSystem;
 //import frc.robot.subsystems.DropIntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,6 +29,7 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public final static HoodSubsystem hood = new HoodSubsystem();
   public final ManualDriveCommand manualDriveCommand = new ManualDriveCommand(driveSubsystem);
   //public final static OperatorIntakeSystem operatorIntakeSystem = new OperatorIntakeSystem();
   //public final static DropIntakeSubsystem dropIntakeSubsystem = new DropIntakeSubsystem();

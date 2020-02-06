@@ -59,16 +59,16 @@ public class AlignRobotCommand extends CommandBase {
     {
       turn = -1 * Constants.maxTurn;
     }
-    if (tv < 1.0){   
+    //if (tv < 1.0){   
       driveSubsystem.autoAlignDrive(move, turn);
 
-   }
-    else{
-      driveSubsystem.autoAlignDrive(0, 0);
+   //}
+    //else{
+      //driveSubsystem.autoAlignDrive(0, 0);
 
-    }
+    //}
    
-  }
+ }
 
   // Called once the command ends or is interrupted.
   @Override
