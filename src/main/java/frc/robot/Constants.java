@@ -34,15 +34,15 @@ public final class Constants {
 	public static int rightRearMotorDeviceID = 3;
 	public static int intakeMotorDeviceID = -1;
 	public static int conveyorMotorDeviceID = -1;
-	public static int climberMotorDeviceID = -1;
 	public static int shooterMotorDeviceID = -1;
+	public static int climberMotorDeviceID = -1;
 	public static int colorWheelDeviceID = -1;
 
 	//CANSParkMax Motor Speeds
 	public static double intakeMotorSpeed = 0.5;
 	public static double conveyorMotorSpeed = 0.15;
-	public static double climberMotorSpeed = 0.3;
 	public static double shooterMotorSpeed = 0.9;
+	public static double climberMotorSpeed = 0.3;
 	public static double colorWheelMotorSpeed = 0.2;
 
 	//Spike Relay Number constants
@@ -92,6 +92,8 @@ public final class Constants {
 	//Constants for Solenoids within DropIntakeSubsystem()
 	public static double solenoidHoldTime = 2.0;
 	
+	//Constants for limit switch
+	public static int shooterLimitSwitch=0;
 
-	
+
 }
