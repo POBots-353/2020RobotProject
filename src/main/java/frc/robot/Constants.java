@@ -37,6 +37,7 @@ public final class Constants {
 	public static int shooterMotorDeviceID = -1;
 	public static int climberMotorDeviceID = -1;
 	public static int colorWheelDeviceID = -1;
+	public static int hoodMotorDeviceID = 5;
 
 	//CANSParkMax Motor Speeds
 	public static double intakeMotorSpeed = 0.5;
