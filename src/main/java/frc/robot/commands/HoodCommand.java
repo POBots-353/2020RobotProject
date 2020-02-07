@@ -8,23 +8,46 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.subsystems.HoodSubsystem;
 
-public class ShooterCommand extends CommandBase {
+public class HoodCommand extends CommandBase {
   /**
-   * Creates a new ShooterCommand.
+   * Creates a new HoodCommand.
    */
-  public ShooterCommand() {
+  HoodSubsystem hood;
+  public HoodCommand(HoodSubsystem h) {
     // Use addRequirements() here to declare subsystem dependencies.
+    hood = h;
+    addRequirements(hood);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    hood.hoodToggleState += 1;
+    hood.hoodToggleState %= 4; 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+      
+      if(hood.hoodToggleState == 0){
+        hood.runAutoPos();
+      }
+      else if(hood.hoodToggleState == 1){
+        hood.runSetPos(Constants.hoodAngle1);
+      }
+      else if(hood.hoodToggleState == 2){
+        hood.runSetPos(Constants.hoodAngle2);
+      }
+      else if (hood.hoodToggleState == 3){
+        hood.runSetPos(Constants.hoodAngle3);
+      }
+
+      
+  
   }
 
   // Called once the command ends or is interrupted.

@@ -54,9 +54,11 @@ public class ClimberSubsystem extends SubsystemBase {
     //* "else" makes it so any other combination of climberUp and climberDown occurs it stops the climberMotor *
     if(climberUp == true && climberDown== false){
       climberMotor.set(Constants.climberMotorSpeed);
-    } else if(climberDown == true && climberUp == false){
+    }
+    else if(climberDown == true && climberUp == false){
       climberMotor.set(-Constants.climberMotorSpeed);
-    } else{
+    }
+    else{
       climberMotor.set(0);
     }
 

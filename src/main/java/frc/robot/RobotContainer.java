@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignRobotCommand;
+import frc.robot.commands.HoodCommand;
 //import frc.robot.commands.DropIntakeCommand;
 import frc.robot.commands.ManualDriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -27,19 +28,15 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class RobotContainer {
 
-  // The robot's subsystems and commands are defined here...
+  // The robot's subsystems are defined here
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
   public final static HoodSubsystem hood = new HoodSubsystem();
-  public final ManualDriveCommand manualDriveCommand = new ManualDriveCommand(driveSubsystem);
-  //public final static OperatorIntakeSystem operatorIntakeSystem = new OperatorIntakeSystem();
-  //public final static DropIntakeSubsystem dropIntakeSubsystem = new DropIntakeSubsystem();
-  
-  //Use DigitalInput to get values from photoelectric sensor
-  //https://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/first/wpilibj/DigitalInput.html
-  //https://www.chiefdelphi.com/t/how-to-wire-and-program-photoelectric-sensors-beginner/342448/6
+ 
+  // The robot's joysticks are defined here
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
   public final static Joystick operatorStick = new Joystick(Constants.operatorStickPort);
-   
+  
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -56,11 +53,14 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
     JoystickButton magicButton = new JoystickButton(driverStick, Constants.AutoAlignButtonNumber);
     magicButton.whileHeld(new AlignRobotCommand(driveSubsystem))
     .whenReleased(new ManualDriveCommand(driveSubsystem));
-    //JoystickButton dropIntakeButton = new JoystickButton(operatorStick, Constants.dropIntakeButtonNumber);
-    //dropIntakeButton.whenPressed(new DropIntakeCommand(dropIntakeSubsystem));
+
+    JoystickButton hoodToggleButton = new JoystickButton(operatorStick, Constants.hoodUpButtonNumber);
+    hoodToggleButton.whenPressed(new HoodCommand(hood));
+
   }
 
 
@@ -71,6 +71,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return manualDriveCommand;
+    return new ManualDriveCommand(driveSubsystem);
   }
 }

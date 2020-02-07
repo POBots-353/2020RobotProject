@@ -7,14 +7,10 @@
 
 package frc.robot;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-//import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Constants;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,16 +19,10 @@ import frc.robot.Constants;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static boolean intakeIn;
-  public static boolean intakeOut;
-  public static boolean shooterRunning;
 
-  boolean kansas = false;
-  boolean misouri = true;
   
   private Command autonomousCommand; 
   private RobotContainer robotContainer;
-  public static CANSparkMax conveyorMotor = new CANSparkMax(Constants.conveyorMotorDeviceID, MotorType.kBrushless);
 
   //private Solenoid intakeSolenoid;
 
@@ -111,26 +101,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //Instantiates the subsys and command
-    //robotContainer.manualDriveCommand.execute();
-
-    if(RobotContainer.operatorStick.getRawButton(Constants.conveyorUpButtonNumber)){ // these top 2 are simple conditional for if button for conveyor is pressed
-      conveyorMotor.set(Constants.conveyorMotorSpeed);
-    }
-    else if(RobotContainer.operatorStick.getRawButton(Constants.conveyorUpButtonNumber)){
-      conveyorMotor.set(Constants.conveyorMotorSpeed*-1);
-    }
-    else if(intakeIn){ // these next three respond to global querries to run conveyor, could be ors but style
-      conveyorMotor.set(Constants.conveyorMotorSpeed);
-    }
-    else if(intakeOut){
-      conveyorMotor.set(Constants.conveyorMotorSpeed*-1);
-    }
-    else if(shooterRunning){
-      conveyorMotor.set(Constants.conveyorMotorSpeed);
-    }
-    else{
-        conveyorMotor.set(0);
-    }
 
   }
 
@@ -146,17 +116,4 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
-
-  public static void changeIntakeIn(boolean polarity){
-    intakeIn = polarity;
-  }
-  public static void changeIntakeOut(boolean polarity){
-    intakeOut = polarity;
-  }
-  public static void changeShooterRunning(boolean polarity){
-    shooterRunning = polarity;
-  }
-
-
-
 }

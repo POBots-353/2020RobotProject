@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -24,10 +25,14 @@ public class HoodSubsystem extends SubsystemBase {
   public CANSparkMax hoodMotor = new CANSparkMax(Constants.hoodMotorDeviceID, MotorType.kBrushless);
   public CANPIDController hoodMotorController = hoodMotor.getPIDController();
   public CANEncoder hoodMotorEncoder = hoodMotor.getEncoder();
-  double kP = 5e-5; 
-  double kI = 1e-6;
+
+  public int hoodToggleState = 1;
+
+
+  double kP = 0.294; 
+  double kI = 0;
   double kD = 0; 
-  double kIz = 0;       //My Dearest Salil, please use a more descriptive name ~CR
+  double kIz = 0;
   double kFF = 0.000156; 
   double kMaxOutput = 1; 
   double kMinOutput = -1;
@@ -37,6 +42,7 @@ public class HoodSubsystem extends SubsystemBase {
   // Smart Motion Coefficients
   double maxVel = 200; // rpm
   double maxAcc = 150;
+
 
   public HoodSubsystem() {
     hoodMotor.restoreFactoryDefaults();
@@ -57,53 +63,47 @@ public class HoodSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Set Position", 0);
     //SmartDashboard.putNumber("Set Velocity", 0);
   }
-
-  @Override
-  public void periodic() {
-    double p = 0.294;
-    double i = 0.0;
-    double d = 0.0;
-    double iz = 0.0;
-    double ff = 1.56E-4;
-    double max = 1.0;
-    double min = -1.0;
-    double maxV = 60.0;
-    double minV = 0.0;
-    double maxA = 150.0;
-    double allE = 0.0;
+  public void runAutoPos(){
+    double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
  
-    // if PID coefficients on SmartDashboard have changed, write new values to controller
- 
-    if((p != kP)) { hoodMotorController.setP(p); kP = p; }
-    if((i != kI)) { hoodMotorController.setI(i); kI = i; }
-    if((d != kD)) { hoodMotorController.setD(d); kD = d; }
-    if((iz != kIz)) { hoodMotorController.setIZone(iz); kIz = iz; }
-    if((ff != kFF)) { hoodMotorController.setFF(ff); kFF = ff; }
-    if((max != kMaxOutput) || (min != kMinOutput)) { 
- 
-      hoodMotorController.setOutputRange(min, max); 
- 
-      kMinOutput = min; kMaxOutput = max; 
- 
-    }
- 
-    if((maxV != maxVel)) { hoodMotorController.setSmartMotionMaxVelocity(maxV,0); maxVel = maxV; }
-    if((minV != minVel)) { hoodMotorController.setSmartMotionMinOutputVelocity(minV,0); minVel = minV; }
-    if((maxA != maxAcc)) { hoodMotorController.setSmartMotionMaxAccel(maxA,0); maxAcc = maxA; }
-    if((allE != allowedErr)) { hoodMotorController.setSmartMotionAllowedClosedLoopError(allE,0); allowedErr = allE; }
- 
- 
- 
-    double setPoint, processVariable;
+    double setPoint, encoderPosition;
     
-    processVariable = hoodMotorEncoder.getPosition();
-    setPoint = SmartDashboard.getNumber("Set Position", 0);
+    encoderPosition = hoodMotorEncoder.getPosition();    
+    setPoint = Constants.hoodLSRLA * Math.pow(ty, 2) + Constants.hoodLSRLB * ty + Constants.hoodLSRLC; //regression to convert limelight to encoder value
+    // anticipate arctan here 
     hoodMotorController.setReference(setPoint, ControlType.kPosition);
-    //processVariable = hoodMotorEncoder.getPosition();
 
     
-    SmartDashboard.putNumber("Process Variable", processVariable);
+    SmartDashboard.putNumber("Process Variable", encoderPosition);
     
 
   }
+  public void runSetPos(double newPostion){
+
+
+ 
+    // if PID coefficients on SmartDashboard hav
+ 
+ 
+    double setPoint, encoderPosition;
+    
+    encoderPosition = hoodMotorEncoder.getPosition();
+    
+    setPoint = newPostion;
+
+    hoodMotorController.setReference(setPoint, ControlType.kPosition);
+
+    
+    SmartDashboard.putNumber("Process Variable", encoderPosition);
+    
+
+  }
+
+
+  
+@Override
+  public void periodic() {
+    
+}
+
 }

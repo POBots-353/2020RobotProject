@@ -5,11 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
+
+
+
+//RILEY WILL FIX THIS I KNOW IT LOOKS WEIRD
+
+
+
+
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -29,6 +39,7 @@ import com.revrobotics.CANEncoder;
 public class ColorWheelSubsytem extends SubsystemBase {
 
 
+
   public CANSparkMax colorWheelMotor = new CANSparkMax(Constants.colorWheelDeviceID, MotorType.kBrushless); //constants
 
   public CANEncoder colorWheelEncoder = new CANEncoder(colorWheelMotor);
@@ -45,9 +56,6 @@ public class ColorWheelSubsytem extends SubsystemBase {
   public static Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
 
-  public void manualColorWheel(){
-    colorWheelMotor.set(Constants.colorWheelMotorSpeed);
-  }
 
   /**
    * Creates a new ColorWheelSubsytem.
@@ -64,5 +72,41 @@ public class ColorWheelSubsytem extends SubsystemBase {
   }
 
 
+
+  public void manualColorWheel(){
+    colorWheelMotor.set(Constants.colorWheelMotorSpeed);
+  }
+
+  public void autoColorWheel(){
+    String gameData = DriverStation.getInstance().getGameSpecificMessage();
+
+    if (gameData.length() > 0){
+      if (gameData.charAt(0) == 'B'){ //Blue represented by 0
+        moveAutoColorWheel(3, 0);
+      }
+      else if (gameData.charAt(0) == 'G'){ //Green represented by 1
+        moveAutoColorWheel(3, 1);
+      }
+      else if (gameData.charAt(0) == 'R'){ //Red represented by 2
+        moveAutoColorWheel(3, 2);
+      }
+      else if (gameData.charAt(0) == 'Y'){ //Yellow represented by 3
+        moveAutoColorWheel(3, 3);
+      }
+    }
+    else if(gameData.length() == 0){
+      moveAutoColorWheel(12, 4);
+    }
+  }
+
+public void moveAutoColorWheel(int stageMode, int targetColor){
+  Color currentColor = colorWheelSensor.getColor();
+  if (stageMode == 12){
+
+  }
+  else if (stageMode == 3){
+
+  }
+}
 
 }

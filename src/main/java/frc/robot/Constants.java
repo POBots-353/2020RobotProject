@@ -85,6 +85,16 @@ public final class Constants {
 	public static double minHeadingError = 0.50;
 	public static double minDistanceError = 0.50;
 
+	// Constants to angle the hood
+	public static double kPHoodAim = 0.294;
+	
+	public static double hoodLSRLA = -1; //represents coefficient of x ^ 2
+	public static double hoodLSRLB = -1; //represents coefficient of x
+	public static double hoodLSRLC = -1; //represents constant
+	public static double hoodAngle1 = 0;
+	public static double hoodAngle2 = 0.125;
+	public static double hoodAngle3 = 0.250;
+
 	//Constants for driving modes within ManualDriveCommand()
 	public static double turboScale = 1.00; //faster speed for the robot's drivetrain
 	public static double slowScale = 0.5; //Slower speed for the robot's drivetrain
