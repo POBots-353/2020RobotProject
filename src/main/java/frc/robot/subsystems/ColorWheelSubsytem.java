@@ -18,7 +18,7 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorSensorV3;
 //import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.ColorMatchResult;
+//import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.CANEncoder;
 //import com.revrobotics.CANError;

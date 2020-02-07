@@ -27,7 +27,7 @@ public class HoodSubsystem extends SubsystemBase {
   double kP = 5e-5; 
   double kI = 1e-6;
   double kD = 0; 
-  double kIz = 0; 
+  double kIz = 0;       //My Dearest Salil, please use a more descriptive name ~CR
   double kFF = 0.000156; 
   double kMaxOutput = 1; 
   double kMinOutput = -1;

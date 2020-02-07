@@ -58,10 +58,10 @@ public final class Constants {
 	//Driver button constants
 	public static int turboButtonNumber = 3;
 	public static int slowButtonNumber = 2;
+	public static int AutoAlignButtonNumber = 1;
 
 	//Operator button constants
-	public static int AutoAlignButtonNumber = 1;
-	public static int manualshooterButtonNumber = 2;
+	public static int shootButtonNumber = 1;
 	public static int intakeButtonNumber = 3;
 	public static int outtakeButtonNumber = 4;
 	public static int conveyorUpButtonNumber = 5;
