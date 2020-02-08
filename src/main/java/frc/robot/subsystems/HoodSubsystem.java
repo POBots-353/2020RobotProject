@@ -26,7 +26,7 @@ public class HoodSubsystem extends SubsystemBase {
   public CANPIDController hoodMotorController = hoodMotor.getPIDController();
   public CANEncoder hoodMotorEncoder = hoodMotor.getEncoder();
 
-  public int hoodToggleState = 1;
+  public int hoodToggleState;
 
 
   double kP = 0.294; 
@@ -42,11 +42,12 @@ public class HoodSubsystem extends SubsystemBase {
   // Smart Motion Coefficients
   double maxVel = 200; // rpm
   double maxAcc = 150;
-
+  double setPoint, encoderPosition;
 
   public HoodSubsystem() {
     hoodMotor.restoreFactoryDefaults();
     hoodMotorEncoder.setPosition(0);
+    hoodToggleState = 1;
     // set PID coefficients
     hoodMotorController.setP(kP);
     hoodMotorController.setI(kI);
@@ -60,23 +61,10 @@ public class HoodSubsystem extends SubsystemBase {
     hoodMotorController.setSmartMotionMinOutputVelocity(minVel, smartMotionSlot);
     hoodMotorController.setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
     hoodMotorController.setSmartMotionAllowedClosedLoopError(allowedErr, smartMotionSlot);
-    SmartDashboard.putNumber("Set Position", 0);
+    //SmartDashboard.putNumber("Set Position", 0);
     //SmartDashboard.putNumber("Set Velocity", 0);
   }
   public void runAutoPos(){
-    double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
- 
-    double setPoint, encoderPosition;
-    
-    encoderPosition = hoodMotorEncoder.getPosition();    
-    setPoint = Constants.hoodLSRLA * Math.pow(ty, 2) + Constants.hoodLSRLB * ty + Constants.hoodLSRLC; //regression to convert limelight to encoder value
-    // anticipate arctan here 
-    hoodMotorController.setReference(setPoint, ControlType.kPosition);
-
-    
-    SmartDashboard.putNumber("Process Variable", encoderPosition);
-    
-
   }
   public void runSetPos(double newPostion){
 
@@ -85,17 +73,13 @@ public class HoodSubsystem extends SubsystemBase {
     // if PID coefficients on SmartDashboard hav
  
  
-    double setPoint, encoderPosition;
-    
-    encoderPosition = hoodMotorEncoder.getPosition();
-    
+    //double setPoint, encoderPosition;
     setPoint = newPostion;
-
     hoodMotorController.setReference(setPoint, ControlType.kPosition);
 
     
-    SmartDashboard.putNumber("Process Variable", encoderPosition);
-    
+
+
 
   }
 
@@ -103,7 +87,26 @@ public class HoodSubsystem extends SubsystemBase {
   
 @Override
   public void periodic() {
+    if(hoodToggleState == 0){
+      double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+ 
+    //double setPoint, encoderPosition;
     
+    //encoderPosition = hoodMotorEncoder.getPosition();    
+    setPoint = ty; //regression to convert limelight to encoder value
+    // anticipate arctan here 
+    hoodMotorController.setReference(setPoint, ControlType.kPosition);
+    }
+    
+
+
+
+
+    encoderPosition = hoodMotorEncoder.getPosition();
+
+    SmartDashboard.putNumber("Hood toggle position: ", hoodToggleState);
+    SmartDashboard.putNumber("Encoder Position", encoderPosition);
+    SmartDashboard.putNumber("Setpoint ", setPoint);
 }
 
 }

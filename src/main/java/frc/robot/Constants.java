@@ -69,7 +69,7 @@ public final class Constants {
 	public static int climberUpButtonNumber = 7;
 	public static int climberDownButtonNumber = 8;
 	public static int dropIntakeButtonNumber = 9;
-	public static int hoodUpButtonNumber = -1;
+	public static int hoodUpButtonNumber = 10;
 	public static int hoodDownButtonNumber = -1;
 	public static int colorBlueButtonNumber = -1;
 	public static int colorRedButtonNumber = -1;
@@ -88,12 +88,12 @@ public final class Constants {
 	// Constants to angle the hood
 	public static double kPHoodAim = 0.294;
 	
-	public static double hoodLSRLA = -1; //represents coefficient of x ^ 2
-	public static double hoodLSRLB = -1; //represents coefficient of x
-	public static double hoodLSRLC = -1; //represents constant
-	public static double hoodAngle1 = 0;
-	public static double hoodAngle2 = 0.125;
-	public static double hoodAngle3 = 0.250;
+	public static double hoodLSRLA = 1; //represents coefficient of x ^ 2
+	public static double hoodLSRLB = 1; //represents coefficient of x
+	public static double hoodLSRLC = 1; //represents constant
+	public static double hoodAngle1 = 0.000;
+	public static double hoodAngle2 = 21.875;
+	public static double hoodAngle3 = 29.167;
 
 	//Constants for driving modes within ManualDriveCommand()
 	public static double turboScale = 1.00; //faster speed for the robot's drivetrain

@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.HoodSubsystem;
 
 public class HoodCommand extends CommandBase {
@@ -34,7 +35,7 @@ public class HoodCommand extends CommandBase {
   public void execute() {
       
       if(hood.hoodToggleState == 0){
-        hood.runAutoPos();
+        //hood.runAutoPos(); -> moved to periodic
       }
       else if(hood.hoodToggleState == 1){
         hood.runSetPos(Constants.hoodAngle1);
@@ -58,6 +59,7 @@ public class HoodCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    
+    return RobotContainer.operatorStick.getRawButton(Constants.hoodUpButtonNumber);
   }
 }
