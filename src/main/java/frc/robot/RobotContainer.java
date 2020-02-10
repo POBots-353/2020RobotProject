@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignRobotCommand;
+import frc.robot.commands.AutonomousDrive;
 import frc.robot.commands.HoodCommand;
 //import frc.robot.commands.DropIntakeCommand;
 import frc.robot.commands.ManualDriveCommand;
@@ -71,6 +72,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new ManualDriveCommand(driveSubsystem);
+    return new AutonomousDrive();
   }
 }
