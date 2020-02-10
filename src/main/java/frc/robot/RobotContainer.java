@@ -36,6 +36,7 @@ public class RobotContainer {
   // The robot's joysticks are defined here
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
   public final static Joystick operatorStick = new Joystick(Constants.operatorStickPort);
+ 
   
 
   /**
@@ -72,6 +73,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new AutonomousDrive();
+    
+    return new AutonomousDrive(driveSubsystem);
   }
 }

@@ -8,23 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.subsystems.DriveSubsystem;
+//import edu.wpi.first.wpilibj2.command.CommandBase;
+//import frc.robot.*;
+ 
 public class AutonomousDrive extends CommandBase {
+  
+  private final DriveSubsystem driveSubsystem;
+  public int t = 0;
   /**
    * Creates a new AutonomousDrive.
    */
-  public AutonomousDrive() {
+  public AutonomousDrive(DriveSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    driveSubsystem = subsystem;
+    addRequirements(driveSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    t++;
+    if (t <150){
+      driveSubsystem.manualDrive(1, 0, .70);
+    }
+  
   }
 
   // Called once the command ends or is interrupted.
