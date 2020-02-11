@@ -8,13 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.ColorWheelSubsytem;
 
 public class AutoColorWheelCommand extends CommandBase {
   /**
    * Creates a new AutoColorWheel.
    */
-  public AutoColorWheelCommand() {
+  ColorWheelSubsytem colorWheel;
+  public AutoColorWheelCommand(ColorWheelSubsytem c) {
     // Use addRequirements() here to declare subsystem dependencies.
+    colorWheel = c;
+    addRequirements(colorWheel);
   }
 
   // Called when the command is initially scheduled.
@@ -25,6 +31,7 @@ public class AutoColorWheelCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    ColorWheelSubsytem.autoColorWheel();
   }
 
   // Called once the command ends or is interrupted.
@@ -35,6 +42,5 @@ public class AutoColorWheelCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
-  }
+    return RobotContainer.operatorStick.getRawButton(Constants.AutoColorButtonNumber);  }
 }
