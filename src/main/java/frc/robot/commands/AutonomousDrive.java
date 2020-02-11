@@ -35,8 +35,8 @@ public class AutonomousDrive extends CommandBase {
   @Override
   public void execute() {
     t++;
-    if (t <150){
-      driveSubsystem.manualDrive(1, 0, .70);
+    if (t <100){
+      driveSubsystem.manualDrive(1, 0, -.60);
     }
   
   }

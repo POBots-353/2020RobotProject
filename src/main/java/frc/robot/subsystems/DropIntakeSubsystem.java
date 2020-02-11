@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -6,7 +7,7 @@
 /*----------------------------------------------------------------------------*/
 
 
-
+/*
 
 
 package frc.robot.subsystems;
@@ -24,6 +25,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 
 public class DropIntakeSubsystem extends SubsystemBase {
+  public int timeTurner = 0;
 
 
 
@@ -52,14 +54,18 @@ public class DropIntakeSubsystem extends SubsystemBase {
     
     //* "if" tests if release is true (pressed) which will give power to the electric solenoid *
     //*** Giving power to the elctric solenoid will pull the pin in and cause whatever it was holding to be released ***
-    if(release == true){
-      intakeSpike.set(Relay.Value.kOn);
-      Timer.delay(Constants.solenoidHoldTime);
+    timeTurner++;
+
+    if(timeTurner>100||release == true){
       intakeSpike.set(Relay.Value.kOff);
+    }
+    else{
+      intakeSpike.set(Relay.Value.kOn);
+    }
     }
 
   }
 
+*/
 
 
-}

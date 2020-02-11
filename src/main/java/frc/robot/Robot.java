@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Relay;
 
 //import java.sql.Time;
 
@@ -25,6 +26,15 @@ public class Robot extends TimedRobot {
   
   private Command autonomousCommand; 
   private RobotContainer robotContainer;
+
+  public int timeTurner = 0;
+
+
+
+  //* Creates a Relay varible intakeSpike *
+  //*** This is a constructor of the Realy class and takes one parameter Relay(int) being the port number ***
+  Relay intakeSpike = new Relay(Constants.intakeSpikeNumber);
+  
   //public int t = 0;
 
   //private Solenoid intakeSolenoid;
@@ -55,6 +65,24 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     //robotContainer.manualDriveCommand.execute();
+
+    
+    //* Creates one boolean value (true or false) that indicates whether or not button release has been pressed or not *
+    //*** True represents the button was pressed and false represents that the button was not pressed ***
+    boolean release = RobotContainer.operatorStick.getRawButtonPressed(Constants.dropIntakeButtonNumber);
+    
+    //* "if" tests if release is true (pressed) which will give power to the electric solenoid *
+    //*** Giving power to the elctric solenoid will pull the pin in and cause whatever it was holding to be released ***
+    timeTurner++;
+
+    if(timeTurner>100||release == true){
+      intakeSpike.set(Relay.Value.kOff);
+    }
+    else{
+      intakeSpike.set(Relay.Value.kOn);
+    }
+    
+
   }
 
   /**
