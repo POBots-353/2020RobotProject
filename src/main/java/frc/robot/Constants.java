@@ -25,7 +25,6 @@ public final class Constants {
 	//Joystick and controller port constants
 	public static int driverStickPort = 0;
 	public static int operatorStickPort = 3;
-	public static int colorWheelControllerPort = -1;
 
 	//CANSparkMax Device ID constants
 	public static int leftFrontMotorDeviceID = 4; 
