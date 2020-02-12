@@ -56,9 +56,10 @@ public final class Constants {
 	public static int colorSensorNumber = -1;
 	 
 	//Driver button constants
-	public static int turboButtonNumber = 3;
-	public static int slowButtonNumber = 2;
+	public static int turboButtonNumber = 2;
+	public static int slowButtonNumber = 3;
 	public static int AutoAlignButtonNumber = 1;
+	public static int magicTurnButtonNumber = 4;
 
 	//Operator button constants
 	public static int shootButtonNumber = 1;
