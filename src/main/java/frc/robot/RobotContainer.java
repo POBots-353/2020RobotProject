@@ -10,10 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignRobotCommand;
+import frc.robot.commands.AutoColorWheelCommand;
 import frc.robot.commands.AutonomousDrive;
 import frc.robot.commands.HoodCommand;
 //import frc.robot.commands.DropIntakeCommand;
 import frc.robot.commands.ManualDriveCommand;
+import frc.robot.subsystems.ColorWheelSubsytem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.HoodSubsystem;
 //import frc.robot.subsystems.OperatorIntakeSystem;
@@ -32,6 +34,7 @@ public class RobotContainer {
   // The robot's subsystems are defined here
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
   public final static HoodSubsystem hood = new HoodSubsystem();
+  public final static ColorWheelSubsytem colorWheelSubsystem =  new ColorWheelSubsytem();
  
   // The robot's joysticks are defined here
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
@@ -62,6 +65,9 @@ public class RobotContainer {
 
     JoystickButton hoodToggleButton = new JoystickButton(operatorStick, Constants.hoodUpButtonNumber);
     hoodToggleButton.whenPressed(new HoodCommand(hood));
+
+    JoystickButton autoColorWheelButton = new JoystickButton(operatorStick, Constants.AutoColorButtonNumber);
+    autoColorWheelButton.whenPressed(new AutoColorWheelCommand(colorWheelSubsystem));
 
   }
 

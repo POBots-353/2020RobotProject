@@ -16,25 +16,27 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANEncoder;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorSensorV3;
-import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
-import com.revrobotics.CANEncoder;
+import com.revrobotics.ColorMatch;
+
+//import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class ColorWheelSubsytem extends SubsystemBase {
 
-  public static CANSparkMax colorWheelMotor = new CANSparkMax(Constants.colorWheelDeviceID, MotorType.kBrushless);
-  public static CANEncoder colorWheelEncoder = new CANEncoder(colorWheelMotor);
+
 
   public static I2C.Port colorSensorPort = I2C.Port.kOnboard;
   public static ColorSensorV3 colorSensor = new ColorSensorV3(colorSensorPort);
@@ -45,12 +47,10 @@ public class ColorWheelSubsytem extends SubsystemBase {
   public static Color kRed = ColorMatch.makeColor(0.561, 0.232, 0.114);
   public static Color kYellow = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
-  public static int countSwitch = 0;
-  public static Color previousColor = colorSensor.getColor();
-  public static ColorMatchResult lastColorMatchResult = colorMatch.matchClosestColor(previousColor);
+  public static CANSparkMax colorWheelMotor = new CANSparkMax(Constants.colorWheelDeviceID, MotorType.kBrushless);
+  public static CANEncoder colorWheelEncoder = new CANEncoder(colorWheelMotor);
 
-public static int counter = 0;
-public static String color;
+
 
   public static void autoColorWheel(){
 
@@ -59,106 +59,8 @@ public static String color;
     colorMatch.addColorMatch(kRed);
     colorMatch.addColorMatch(kYellow);
 
-    colorWheelMotor.restoreFactoryDefaults();
-
-    colorWheelEncoder.setPosition(0.0);
-
-    String gameData = DriverStation.getInstance().getGameSpecificMessage();
-
-    if (gameData.length() > 0){
-      if (gameData.charAt(0) == 'B'){
-        moveColorWheel("STAGE 3", 0);
-      }
-      else if (gameData.charAt(0) == 'G'){
-        moveColorWheel("STAGE 3", 1);
-      }
-      else if (gameData.charAt(0) == 'R'){
-        moveColorWheel("STAGE 3", 2);
-      }
-      else if (gameData.charAt(0) == 'Y'){
-        moveColorWheel("STAGE 3", 3);
-      }
-    }
-    else{
-      moveColorWheel("STAGE 1 or 2", -1);
-    }
-
-
   }
 
-public static void moveColorWheel(String stageMode, int targetColor){
-
-  SmartDashboard.putNumber("count Switch", countSwitch);
-  Color match = colorSensor.getColor();
-  ColorMatchResult currentColorMatchResult = colorMatch.matchClosestColor(match);
- 
-
-  int currentColor = -1;
-  int lastColor = -1;
-
-  if (currentColorMatchResult.color == kBlue){
-    currentColor = 0;
-    color = "Blue";
-  }
-  else if (currentColorMatchResult.color == kGreen){
-    currentColor = 1;
-    color = "Green";
-  }
-  else if (currentColorMatchResult.color == kRed){
-    currentColor = 2;
-    color = "Red";
-  }
-  else if (currentColorMatchResult.color == kYellow){
-    currentColor = 3;
-    color = "Yellow";
-  }
-
-if (counter == 0){
-  if (currentColorMatchResult.color == kBlue){
-    lastColor = 0;
-  }
-  else if (currentColorMatchResult.color == kGreen){
-    lastColor = 1;
-  }
-  else if (currentColorMatchResult.color == kRed){
-    lastColor = 2;
-  }
-  else if (currentColorMatchResult.color == kYellow){
-    lastColor = 3;
-  }
-  counter++;
-}
-
-  SmartDashboard.putString("Color", color);
-
-  if (countSwitch < 32){
-    colorWheelMotor.set(Constants.colorWheelMotorSpeed);
-    if (currentColor != lastColor){
-      countSwitch++;
-      lastColor = currentColor;
-    }
-  }
-  else if (countSwitch >= 32){
-    colorWheelMotor.set(0);
-  }
-
-
-  /*
-  if (countSwitch < 32){
-    colorWheelMotor.set(Constants.colorWheelMotorSpeed);
-    if (previousColor != colorSensor.getColor()){
-      countSwitch++;
-      previousColor = colorSensor.getColor();
-    }
-  }
-  else if (countSwitch >= 32){
-    colorWheelMotor.set(0);
-    finished = true;
-  }
-SmartDashboard.putNumber("count Switch", countSwitch);
-*/
-
-}
 
 
   /**
@@ -168,9 +70,35 @@ SmartDashboard.putNumber("count Switch", countSwitch);
 
   }
 
+
+
   @Override
   public void periodic() {
 
+    Color detectedColor = colorSensor.getColor();
+
+    String colorString;
+    ColorMatchResult match = colorMatch.matchClosestColor(detectedColor);
+    if (match.color == kBlue) {
+      colorString = "Blue";
+    } else if (match.color == kRed) {
+      colorString = "Red";
+    } else if (match.color == kGreen) {
+      colorString = "Green";
+    } else if (match.color == kYellow) {
+      colorString = "Yellow";
+    } else {
+      colorString = "Unknown";
+    }
+
+    SmartDashboard.putNumber("Red", detectedColor.red);
+    SmartDashboard.putNumber("Green", detectedColor.green);
+    SmartDashboard.putNumber("Blue", detectedColor.blue);
+    SmartDashboard.putNumber("Confidence", match.confidence);
+    SmartDashboard.putString("Detected Color", colorString);
+
   }
+
+
 
 }
