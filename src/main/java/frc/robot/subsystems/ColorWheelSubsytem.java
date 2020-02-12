@@ -77,16 +77,21 @@ public class ColorWheelSubsytem extends SubsystemBase {
 
     Color detectedColor = colorSensor.getColor();
 
+    int change = -1;
     String colorString;
     ColorMatchResult match = colorMatch.matchClosestColor(detectedColor);
     if (match.color == kBlue) {
       colorString = "Blue";
+      change++;
     } else if (match.color == kRed) {
       colorString = "Red";
+      change++;
     } else if (match.color == kGreen) {
       colorString = "Green";
+      change++;
     } else if (match.color == kYellow) {
       colorString = "Yellow";
+      change++;
     } else {
       colorString = "Unknown";
     }
@@ -96,6 +101,21 @@ public class ColorWheelSubsytem extends SubsystemBase {
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
+
+    moveColorWheelMotor(change);
+
+  }
+
+
+
+  public void moveColorWheelMotor(int changeColor){
+
+    if (changeColor < 32 && changeColor > 0){
+      colorWheelMotor.set(Constants.colorWheelMotorSpeed);
+    }
+    else{
+      colorWheelMotor.set(0);
+    }
 
   }
 
