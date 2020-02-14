@@ -34,7 +34,7 @@ public class RobotContainer {
   // The robot's subsystems are defined here
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
   public final static HoodSubsystem hood = new HoodSubsystem();
-  public final static ColorWheelSubsytem colorWheelSubsystem =  new ColorWheelSubsytem();
+  //public final static ColorWheelSubsytem colorWheelSubsystem =  new ColorWheelSubsytem();
  
   // The robot's joysticks are defined here
   public final static Joystick driverStick = new Joystick(Constants.driverStickPort);
@@ -60,14 +60,14 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     JoystickButton magicButton = new JoystickButton(driverStick, Constants.AutoAlignButtonNumber);
-    magicButton.whileHeld(new AlignRobotCommand(driveSubsystem))
+    magicButton.whileHeld(new AlignRobotCommand(driveSubsystem, hood))
     .whenReleased(new ManualDriveCommand(driveSubsystem));
 
-    JoystickButton hoodToggleButton = new JoystickButton(operatorStick, Constants.hoodUpButtonNumber);
+    JoystickButton hoodToggleButton = new JoystickButton(operatorStick, Constants.hoodToggleBtnNum);
     hoodToggleButton.whenPressed(new HoodCommand(hood));
 
-    JoystickButton autoColorWheelButton = new JoystickButton(operatorStick, Constants.AutoColorButtonNumber);
-    autoColorWheelButton.whenPressed(new AutoColorWheelCommand(colorWheelSubsystem));
+    //JoystickButton autoColorWheelButton = new JoystickButton(operatorStick, Constants.AutoColorButtonNumber);
+    //autoColorWheelButton.whenPressed(new AutoColorWheelCommand(colorWheelSubsystem));
 
   }
 

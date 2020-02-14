@@ -24,7 +24,7 @@ public final class Constants {
 
 	//Joystick and controller port constants
 	public static int driverStickPort = 0;
-	public static int operatorStickPort = 3;
+	public static int operatorStickPort = 1;
 
 	//CANSparkMax Device ID constants
 	public static int leftFrontMotorDeviceID = 4; 
@@ -35,8 +35,8 @@ public final class Constants {
 	public static int conveyorMotorDeviceID = -1;
 	public static int shooterMotorDeviceID = -1;
 	public static int climberMotorDeviceID = -1;
-	public static int colorWheelDeviceID = 5;
-	public static int hoodMotorDeviceID = -1;
+	public static int colorWheelDeviceID = -1;
+	public static int hoodMotorDeviceID = 5;
 
 	//CANSParkMax Motor Speeds
 	public static double intakeMotorSpeed = 0.5;
@@ -69,29 +69,32 @@ public final class Constants {
 	public static int climberUpButtonNumber = 7;
 	public static int climberDownButtonNumber = 8;
 	public static int dropIntakeButtonNumber = 9;
-	public static int hoodUpButtonNumber = 10;
-	public static int hoodDownButtonNumber = -1;
-	public static int AutoColorButtonNumber = 11;
+	public static int hoodToggleBtnNum = 3;
+	public static int hoodRunBtnNum = 2;
+	public static int AutoColorButtonNumber = -1;
 	public static int manualColorButtonNumber = -1;
 ;
 
 	//Constants for angular and linear alignment within AlignRobotCommand()
-	public static double kPAim = 0.075;
-	public static double kPDistance = 0.1;
+	public static double kPAim = 0.025;
+	public static double kPDistance = 0.15;
 	public static double maxMove = 0.5;
 	public static double maxTurn = 0.25;
-	public static double minHeadingError = 0.50;
+	public static double minHeadingError = 0.25;
 	public static double minDistanceError = 0.50;
-
+	public static double position1 = -5.0;
+	public static double position2 = 0.0;
+	public static double position3 = 5.0;
 	// Constants to angle the hood
+	public static double hoodGear = 175;
 	public static double kPHoodAim = 0.294;
 	
 	public static double hoodLSRLA = 1; //represents coefficient of x ^ 2
 	public static double hoodLSRLB = 1; //represents coefficient of x
 	public static double hoodLSRLC = 1; //represents constant
 	public static double hoodAngle1 = 0.000;
-	public static double hoodAngle2 = 21.875;
-	public static double hoodAngle3 = 29.167;
+	public static double hoodAngle2 = 0.125 * hoodGear;
+	public static double hoodAngle3 = 0.167 * hoodGear;
 
 	//Constants for driving modes within ManualDriveCommand()
 	public static double turboScale = 1.00; //faster speed for the robot's drivetrain

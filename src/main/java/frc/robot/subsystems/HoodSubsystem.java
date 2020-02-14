@@ -17,6 +17,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class HoodSubsystem extends SubsystemBase {
   /**
@@ -64,43 +65,27 @@ public class HoodSubsystem extends SubsystemBase {
     //SmartDashboard.putNumber("Set Position", 0);
     //SmartDashboard.putNumber("Set Velocity", 0);
   }
-  public void runAutoPos(){
-  }
-  public void runSetPos(double newPostion){
-
-
- 
-    // if PID coefficients on SmartDashboard hav
- 
- 
-    //double setPoint, encoderPosition;
-    setPoint = newPostion;
-    hoodMotorController.setReference(setPoint, ControlType.kPosition);
-
-    
-
-
-
-  }
-
-
-  
 @Override
   public void periodic() {
-    if(hoodToggleState == 0){
+    if(hoodToggleState == 0 && RobotContainer.operatorStick.getRawButton(Constants.hoodRunBtnNum)){
       double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
  
-    //double setPoint, encoderPosition;
     
-    //encoderPosition = hoodMotorEncoder.getPosition();    
+    
     setPoint = ty; //regression to convert limelight to encoder value
     // anticipate arctan here 
-    hoodMotorController.setReference(setPoint, ControlType.kPosition);
     }
+    else if(hoodToggleState == 1 && RobotContainer.operatorStick.getRawButton(Constants.hoodRunBtnNum)){
+      setPoint = Constants.hoodAngle1;
+    }
+    else if(hoodToggleState == 2 && RobotContainer.operatorStick.getRawButton(Constants.hoodRunBtnNum)){
+      setPoint = Constants.hoodAngle2;
+    }
+    else if(hoodToggleState == 3 && RobotContainer.operatorStick.getRawButton(Constants.hoodRunBtnNum)){
+      setPoint = Constants.hoodAngle3;
+    }
+    hoodMotorController.setReference(setPoint, ControlType.kPosition);
     
-
-
-
 
     encoderPosition = hoodMotorEncoder.getPosition();
 

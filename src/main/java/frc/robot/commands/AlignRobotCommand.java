@@ -10,6 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.HoodSubsystem;
+//import frc.robot.subsystems.HoodSubsystem;
 import edu.wpi.first.networktables.*;
 
 public class AlignRobotCommand extends CommandBase {
@@ -17,14 +19,16 @@ public class AlignRobotCommand extends CommandBase {
    * Creates a new AlignRobotCommand.
    */
   DriveSubsystem driveSubsystem;
+  HoodSubsystem hood;
   double tx;
   double ty;
   double tv;
   double distanceError;
   double headingError;
-  public AlignRobotCommand(DriveSubsystem subsystem) {
+  public AlignRobotCommand(DriveSubsystem d, HoodSubsystem h) {
     // Use addRequirements() here to declare subsystem dependencies.
-    driveSubsystem = subsystem;
+    driveSubsystem = d;
+    hood = h;
     addRequirements(driveSubsystem);
   }
 
@@ -39,11 +43,29 @@ public class AlignRobotCommand extends CommandBase {
     tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
     ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-    headingError = -tx;
-    distanceError = -ty;
     
+    //sets the heading error to the opposite of the tx value of the limelight
+    headingError = -tx;
+    
+    //sets the distance error depending on the toggle state
+    if(hood.hoodToggleState == 0){
+      distanceError = 0.0;
+    }
+    else if(hood.hoodToggleState == 1){
+      distanceError = Constants.position1 - ty;
+    }
+    else if(hood.hoodToggleState == 2){
+      distanceError = Constants.position2 - ty;
+    }
+    else if(hood.hoodToggleState == 3){
+      distanceError = Constants.position3 - ty;
+    }
+    
+    //proportional scaling of the move and turn variables
     double turn = headingError * Constants.kPAim;
     double move = distanceError * Constants.kPDistance;
+
+    //ensures that move and turn do not exceed the maximum
     if(move > Constants.maxMove && move > 0)
     {
       move = Constants.maxMove;
@@ -59,6 +81,8 @@ public class AlignRobotCommand extends CommandBase {
     {
       turn = -1 * Constants.maxTurn;
     }
+
+    
     //if (tv < 1.0){   
       driveSubsystem.autoAlignDrive(move, turn);
 
@@ -70,7 +94,7 @@ public class AlignRobotCommand extends CommandBase {
    
  }
 
-  // Called once the command ends or is interrupted.
+  // Called once the command ends or is interrupted; stops the robot
   @Override
   public void end(boolean interrupted) {
     if(interrupted){
@@ -78,7 +102,7 @@ public class AlignRobotCommand extends CommandBase {
     }
   }
 
-  // Returns true when the command should end.
+  // Returns true when the heading error and the distance error are within the minimum
   @Override
   public boolean isFinished() {
     return (Math.abs(headingError) < Constants.minHeadingError && Math.abs(distanceError) < Constants.minDistanceError);

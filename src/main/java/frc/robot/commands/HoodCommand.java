@@ -34,18 +34,7 @@ public class HoodCommand extends CommandBase {
   @Override
   public void execute() {
       
-      if(hood.hoodToggleState == 0){
-        //hood.runAutoPos(); -> moved to periodic
-      }
-      else if(hood.hoodToggleState == 1){
-        hood.runSetPos(Constants.hoodAngle1);
-      }
-      else if(hood.hoodToggleState == 2){
-        hood.runSetPos(Constants.hoodAngle2);
-      }
-      else if (hood.hoodToggleState == 3){
-        hood.runSetPos(Constants.hoodAngle3);
-      }
+      
 
       
   
@@ -60,6 +49,6 @@ public class HoodCommand extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    return RobotContainer.operatorStick.getRawButton(Constants.hoodUpButtonNumber);
+    return RobotContainer.operatorStick.getRawButton(Constants.hoodToggleBtnNum);
   }
 }
