@@ -47,16 +47,12 @@ public class ClimberSubsystem extends SubsystemBase {
     //* Creates two boolean values (true or false) that indicates whether or not buttons climberUp and climberDown have been pressed or not *
     //*** True represents the button was pressed and false represents that the button was not pressed ***
     boolean climberUp = RobotContainer.operatorStick.getRawButtonPressed(Constants.climberUpButtonNumber);
-    boolean climberDown = RobotContainer.operatorStick.getRawButtonPressed(Constants.climberDownButtonNumber);
 
     //* "if" tests if climberUp is true (pressed) and climberDown is false (not pressed) which will start the climberMotor to raise the climber *
     //* "else if" tests if climberDown is true (pressed) and climberUp is false (not pressed) which will start the climberMotor in the opposite direction to lower the climber *
     //* "else" makes it so any other combination of climberUp and climberDown occurs it stops the climberMotor *
-    if(climberUp == true && climberDown== false){
-      climberMotor.set(Constants.climberMotorSpeed);
-    }
-    else if(climberDown == true && climberUp == false){
-      climberMotor.set(-Constants.climberMotorSpeed);
+    if(climberUp == true){
+      climberMotor.set(-1.0* Constants.climberMotorSpeed);
     }
     else{
       climberMotor.set(0);

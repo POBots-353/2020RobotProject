@@ -46,7 +46,7 @@ public final class Constants {
 	public static double colorWheelMotorSpeed = 0.1;
 
 	//Spike Relay Number constants
-	public static int intakeSpikeNumber = 1;
+	//public static int intakeSpikeNumber = 1;
 
 	//Sensor number constants
 	public static int intakeSensorNumber = 1;
@@ -66,8 +66,7 @@ public final class Constants {
 	public static int outtakeButtonNumber = 8;
 	public static int conveyorUpButtonNumber = 6;
 	public static int conveyorDownButtonNumber = 9;
-	public static int climberUpButtonNumber = 4;
-	public static int climberDownButtonNumber = 15;
+	public static int climberUpButtonNumber = 4;			
 	public static int dropIntakeButtonNumber = 16;
 	public static int hoodToggleBtnNum = 2;
 	public static int hoodRunBtnNum = 3;

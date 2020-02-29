@@ -32,6 +32,8 @@ public class BallTransitSubsystem extends SubsystemBase {
   public boolean intakeIn;
   public boolean intakeOut;
   public boolean shooterRunning;
+  public int countTime;
+  public boolean shooterReverse;
 
 
   public BallTransitSubsystem() {
@@ -51,9 +53,9 @@ public class BallTransitSubsystem extends SubsystemBase {
       runIntake(intakeBtn,outtakeBtn);
     }
 
-    if(shootBtn){
+    //if(shootBtn){
       runShooter(shootBtn);
-    }
+    //}
 
     if(conveyorUpBtn){ // these top 2 are simple conditional for if button for conveyor is pressed
       conveyorMotor.set(Constants.conveyorMotorSpeed);
@@ -65,6 +67,9 @@ public class BallTransitSubsystem extends SubsystemBase {
       conveyorMotor.set(Constants.conveyorMotorSpeed);
     }
     else if(intakeOut){
+      conveyorMotor.set(Constants.conveyorMotorSpeed*-1);
+    }
+    else if(shooterReverse){
       conveyorMotor.set(Constants.conveyorMotorSpeed*-1);
     }
     else if(shooterRunning){
@@ -79,7 +84,7 @@ public class BallTransitSubsystem extends SubsystemBase {
   public void runIntake(boolean intakeBtn,  boolean outtakeBtn){
     if (intakeBtn == true && conveyorSensor.get() == false){
       intakeMotor.set(Constants.intakeMotorSpeed);
-      if(intakeSensor.get() == true){
+      if(true){  //if(intakeSensor.get() == true){ // Removed for limit switch concerns on 2/29 ~CR
         intakeIn = true;
         intakeOut = false;
       }
@@ -98,20 +103,33 @@ public class BallTransitSubsystem extends SubsystemBase {
 
   public void runShooter (boolean shootBtn){
     if (shootBtn == true){
-      shooterMotor.set(Constants.shooterMotorSpeed);
-      if (shooterSensor.get() == true){
-        shooterRunning = false;
+      countTime++;
+      if (countTime > 50){
+        shooterMotor.set(Constants.shooterMotorSpeed);
+        if (shooterSensor.get() == true){
+          shooterRunning = false;
+        }
+        else{
+          shooterRunning = true;
+        }
       }
+      
       else{
-        shooterRunning = true;
+        shooterReverse = true;
       }
+      
     }
     else{
       shooterRunning = false;
       shooterMotor.set(0);
+      countTime = 0;
+      shooterReverse = false;
     }
-  }
+  
+
 
 
 
 }
+}
+
