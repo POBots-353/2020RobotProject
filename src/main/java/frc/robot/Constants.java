@@ -31,12 +31,12 @@ public final class Constants {
 	public static int leftRearMotorDeviceID = 2;
 	public static int rightFrontMotorDeviceID = 1;
 	public static int rightRearMotorDeviceID = 3;
-	public static int intakeMotorDeviceID = -1;
-	public static int conveyorMotorDeviceID = -1;
-	public static int shooterMotorDeviceID = -1;
-	public static int climberMotorDeviceID = -1;
+	public static int intakeMotorDeviceID = 6;
+	public static int conveyorMotorDeviceID = 7;
+	public static int shooterMotorDeviceID = 9;
+	public static int climberMotorDeviceID = 5;
 	public static int colorWheelDeviceID = -1;
-	public static int hoodMotorDeviceID = 5;
+	public static int hoodMotorDeviceID = 8;
 
 	//CANSParkMax Motor Speeds
 	public static double intakeMotorSpeed = 0.5;
@@ -46,10 +46,10 @@ public final class Constants {
 	public static double colorWheelMotorSpeed = 0.1;
 
 	//Spike Relay Number constants
-	public static int intakeSpikeNumber = -1;
+	public static int intakeSpikeNumber = 1;
 
 	//Sensor number constants
-	public static int intakeSensorNumber = -1;
+	public static int intakeSensorNumber = 1;
 	public static int conveyorSensorNumber = -1;
 	public static int shooterSensorNumber = -1;
 	public static int colorSensorNumber = -1;
@@ -62,15 +62,15 @@ public final class Constants {
 
 	//Operator button constants
 	public static int shootButtonNumber = 1;
-	public static int intakeButtonNumber = 3;
-	public static int outtakeButtonNumber = 4;
-	public static int conveyorUpButtonNumber = 5;
-	public static int conveyorDownButtonNumber = 6;
-	public static int climberUpButtonNumber = 7;
-	public static int climberDownButtonNumber = 8;
-	public static int dropIntakeButtonNumber = 9;
-	public static int hoodToggleBtnNum = 3;
-	public static int hoodRunBtnNum = 2;
+	public static int intakeButtonNumber = 7;
+	public static int outtakeButtonNumber = 8;
+	public static int conveyorUpButtonNumber = 6;
+	public static int conveyorDownButtonNumber = 9;
+	public static int climberUpButtonNumber = 4;
+	public static int climberDownButtonNumber = 15;
+	public static int dropIntakeButtonNumber = 16;
+	public static int hoodToggleBtnNum = 2;
+	public static int hoodRunBtnNum = 3;
 	public static int AutoColorButtonNumber = -1;
 	public static int manualColorButtonNumber = -1;
 ;

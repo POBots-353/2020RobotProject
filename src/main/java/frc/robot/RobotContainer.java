@@ -15,6 +15,7 @@ import frc.robot.commands.AutonomousDrive;
 import frc.robot.commands.HoodCommand;
 //import frc.robot.commands.DropIntakeCommand;
 import frc.robot.commands.ManualDriveCommand;
+import frc.robot.subsystems.BallTransitSubsystem;
 import frc.robot.subsystems.ColorWheelSubsytem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.HoodSubsystem;
@@ -33,6 +34,7 @@ public class RobotContainer {
 
   // The robot's subsystems are defined here
   public final static DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public final static BallTransitSubsystem transitSubsystem = new BallTransitSubsystem();
   public final static HoodSubsystem hood = new HoodSubsystem();
   //public final static ColorWheelSubsytem colorWheelSubsystem =  new ColorWheelSubsytem();
  
